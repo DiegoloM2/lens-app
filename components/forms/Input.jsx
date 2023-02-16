@@ -1,22 +1,27 @@
 import React from "react";
-import { StyleSheet } from "react-native";
-import { TextInput } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { TextInput, HelperText } from "react-native-paper";
 
 
 const style = StyleSheet.create({
     input: {
-        borderBottomWidth: "1px",
+        borderBottomWidth: 1,
         borderBottomColor: "lightgrey",
-        marginTop: "10px",
-        paddingBottom: "5px"
+        marginTop: 19,
+        paddingBottom: 5
       }
 })
 
 const Input = (props) => {
     return (
-    <TextInput 
-    style = {style.input} 
-    placeholderTextColor = "rgba(150,150,150,0.9)" mode = "outlined" {...props}/>)
+        <View>
+            <TextInput 
+            style = {style.input} 
+            placeholderTextColor = "rgba(150,150,150,0.9)" mode = "outlined" {...props}/>
+            { props.errors && <HelperText type = "error">{props.errors}</HelperText>}
+        </View>
+    )
+
 }
 
 export default Input;

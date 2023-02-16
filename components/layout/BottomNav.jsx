@@ -1,9 +1,8 @@
 import React, {useState} from "react";
-import Link  from "../touchables/Link"
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import Home from "../../screens/Home";
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-
+import Home from "../../screens/Home";
+import Login from "../../screens/Login";
 
 
 const BottomNav = () => {
@@ -25,10 +24,10 @@ const BottomNav = () => {
           <Tab.Screen
             name = "CreateCard"
             compact = {true}
-            component = {Home}
+            component = {Login}
             options = {{
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="create-card" color={color} size={26} />
+                <MaterialCommunityIcons name="card-plus" color={color} size={26} />
               ),
             }}/>
           <Tab.Screen
