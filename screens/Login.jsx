@@ -5,13 +5,15 @@ import AuthContext from "../contexts/AuthContext";
 import Link from "../components/touchables/Link";
 import {  View, StyleSheet} from "react-native";
 import { shadowStyle } from "../utils/styles";
-import Input from "../components/forms/Input";
-import { TextInput, Button, Text, HelperText } from "react-native-paper";
+import { Button, Text } from "react-native-paper";
+import InputEmail from "../components/forms/InputEmail";
+import InputPassword from "../components/forms/InputPassword";
+import { useNavigation } from "@react-navigation/native";
 
 /**
  * This is the object that contains the validation of the login form.
  */
-const loginValidation = Yup.object({
+export const loginValidation = Yup.object({
     email: Yup.string().email('Invalid email address').required('Required'),
     password: Yup.string()
         .min(8, "password must contain at least 8 characters.")
@@ -23,8 +25,9 @@ const loginValidation = Yup.object({
  * @param { Array } values - takes in form values  
  * @param { AuthContext } auth - takes in auth context to login the user 
  */
-const handleLoginForm = async (values, auth) => {
+const handleLoginForm = async (values, auth, navigator) => {
   let response = await auth.loginUser(values.email,  values.password);
+  navigator.push("Home")
   /* Production: 
   if (response.status == 400) {
     let data = await response.json();
@@ -41,19 +44,14 @@ const handleLoginForm = async (values, auth) => {
   }*/
 }
 
-let styles = StyleSheet.create({
+export const styles = StyleSheet.create({
     form: {
       backgroundColor:"white",
-      marginVertical: "50px",
-      marginHorizontal: "50px",
+      marginVertical: 150,
+      marginHorizontal: 20,
       flexDirection: "column",
-      borderRadius: "0.45em",
-      padding: "15px",
-      shadowColor: "red",
-      shadowOpacity: 1,
-      shadowOffset: "10px",
-      shadowRadius: "100px",
-      fontFamily:"sans-serif",
+      borderRadius: 15,
+      padding: 15,
     },
     formTitle: {
       fontSize: "2em",
@@ -61,12 +59,12 @@ let styles = StyleSheet.create({
       fontWeight:"bold",
     },
     forgotLink: {
-      marginBottom: "20px",
+      marginBottom: 20,
       textAlign:"right",
     },
     registerLink: {
       textAlign: "center",
-      marginVertical: "20px",
+      marginVertical: 20,
 
     }
   });
@@ -75,7 +73,7 @@ let styles = StyleSheet.create({
 
 const LoginForm = () => {
     const auth = useContext(AuthContext);
-    const [showPassword, setShowPassword] = useState(false);
+    const navigator = useNavigation();
 
     return (
       <Formik
@@ -87,34 +85,14 @@ const LoginForm = () => {
         <View style = {[styles.form, shadowStyle.boxShadow]}>
           <Text style = {styles.formTitle}>Login</Text>
 
-          <View>
-            <Input
-              label = "Email" name = "email"
-              placeholder = "example@mail.com"
-              left = {<TextInput.Icon icon = "email" />}
-              value = {props.values.email}
-              onChangeText = {props.handleChange("email")}
-              keyboardType="email-address" />
-              { props.errors.email && <HelperText type = "error">{props.errors.email}</HelperText>}
-
-            <Input secureTextEntry = {!showPassword} 
-              label = "Password" 
-              name = "password" 
-              type = "password" 
-              placeholder = "type your password"
-              right={<TextInput.Icon icon = "eye" onPress = {(e) => {setShowPassword(!showPassword)}}/>}
-              left={<TextInput.Icon icon = "key" onPress = {(e) => {setShowPassword(!showPassword)}}/>}
-              value = {props.values.password}
-              onChangeText = {props.handleChange("password")}
-              />  
-              { props.errors.password && <HelperText type = "error">{props.errors.password}</HelperText>}
-
-            </View>
+          <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
+          <InputPassword  value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
+      
               <Link to = "/" style = { styles.forgotLink }>
                 Forgot your password?
               </Link>
         
-          <Button mode = "contained" disabled = {!props.isValid} onPress = { (e) => {handleLoginForm(props.values, auth) }}>LOGIN</Button>
+          <Button mode = "contained" disabled = {!props.isValid} onPress = { (e) => {handleLoginForm(props.values, auth, navigator) }}>LOGIN</Button>
 
               <Link to = "/register" style = { styles.registerLink }>
                 Register here
@@ -127,9 +105,9 @@ const LoginForm = () => {
 };
 
 const Login= () => (
-    <div>
+    <View>
         <LoginForm  />
-    </div>
+    </View>
 )
 
 
