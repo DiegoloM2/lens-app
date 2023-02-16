@@ -1,6 +1,7 @@
 import React, { useContext } from "react"
 import { StyleSheet, Text, View } from 'react-native';
 import AuthContext from "../contexts/AuthContext";
+import MyComponent from "../components/firstCard/Progress"
 
 
 const Home = () => {
@@ -8,8 +9,8 @@ const Home = () => {
     return (
         <View style = {styles.container}>
             <Text style = {styles.text}>Welcome home {auth.user}</Text>
+            <MyComponent/>
         </View>
-        
         )
   }
 
