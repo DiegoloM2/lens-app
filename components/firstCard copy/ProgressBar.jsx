@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ProgressBar, MD3Colors } from 'react-native-paper';
 import { Avatar, Button, Card, Text} from 'react-native-paper';
 import { StyleSheet } from 'react-native-web';
 import { CircularProgress} from 'react-native-circular-progress-indicator';
@@ -9,7 +8,7 @@ import { mdiCardsOutline } from '@mdi/js';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
-const MyComponent = () => (
+const ProgressBar = () => (
     <Card style={{margin:100, backgroundColor: '#FFFFFF'}}>
       <Card.Title title="Cards Progress" left={LeftContent}/>
       <Card.Content>
@@ -34,4 +33,6 @@ const MyComponent = () => (
       </Card.Actions>
     </Card>
   );
-export default MyComponent;
+
+
+export default ProgressBar;

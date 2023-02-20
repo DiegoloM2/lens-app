@@ -14,6 +14,16 @@ const BottomNav = () => {
 
         >
           <Tab.Screen
+            name = "New Card"
+            compact = {true}
+            component = {Login}
+            options = {{
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name="card-plus" color={color} size={26} />
+              ),
+          }}/>
+
+          <Tab.Screen
             name = "Home"
             component = {Home}
             options = {{
@@ -22,35 +32,15 @@ const BottomNav = () => {
               ),
             }}/>
           <Tab.Screen
-            name = "CreateCard"
-            compact = {true}
-            component = {Login}
-            options = {{
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="card-plus" color={color} size={26} />
-              ),
-            }}/>
-          <Tab.Screen
-            name = "Whatev"
+            name = "Study"
             compact = {true}
             component = {Home}
             options = {{
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="home" color={color} size={26} />
+                <MaterialCommunityIcons name="book-open-variant" color={color} size={26} />
               ),
             }}
-            />
-
-          {/* <Tab.Screen
-              name="Home"
-              component={Home}
-              options={{
-                tabBarLabel: 'Profile',
-                tabBarIcon: ({ color }) => (
-                  <MaterialCommunityIcons name="account" color={color} size={26} />
-                ),
-              }}
-            /> */}
+            />  
         </Tab.Navigator>
     );
     
