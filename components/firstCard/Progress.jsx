@@ -3,11 +3,8 @@ import { ProgressBar, MD3Colors } from 'react-native-paper';
 import { Avatar, Button, Card, Text} from 'react-native-paper';
 import { StyleSheet } from 'react-native-web';
 import { CircularProgress} from 'react-native-circular-progress-indicator';
-import Icon from '@mdi/react';
-import { mdiCardsOutline } from '@mdi/js';
-<Icon path={mdiCardsOutline} size={1} />
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+const LeftContent = props => <Avatar.Icon {...props} icon="cards-outline" />
 
 const MyComponent = () => (
     <Card style={{margin:100, backgroundColor: '#FFFFFF'}}>
