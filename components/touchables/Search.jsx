@@ -13,7 +13,7 @@ const MyComponent = () => {
         onChangeText={onChangeSearch}
         value={searchQuery}
         icon="search"
-        showloading={true}
+        loading={true}
         testID='searchbar'
       />
     );
