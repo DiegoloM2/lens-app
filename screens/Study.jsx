@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import View from "react-native";
 import { Card, Text } from "react-native-paper";
 
@@ -11,6 +11,7 @@ const StudyText = ({ children }) => {
 }
 
 const Study = () => {
+    const [showAnswer, setShowAnswer] = useState(false);
     return <View>
             <Card>
                 <Card.Content>
