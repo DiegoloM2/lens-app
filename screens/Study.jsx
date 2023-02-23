@@ -34,6 +34,7 @@ const Study = () => {
     const [showAnswer, setShowAnswer] = useState(false);
     return (<View>
             <Card>
+    const [answerShowed, setAnswerShowed] = useState(false);
                 <Card.Content>
                     <StudyText>{ TestQuestion }</StudyText>
                 </Card.Content>
