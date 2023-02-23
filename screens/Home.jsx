@@ -9,7 +9,6 @@ const Home = () => {
     return (
         <View style = {styles.container}>
             <Text style = {styles.text}>Welcome home {auth.user}</Text>
-            <MyComponent/>
         </View>
         )
   }
