@@ -1,7 +1,5 @@
 import * as React from 'react';
-import { ProgressBar, MD3Colors } from 'react-native-paper';
 import { Avatar, Button, Card, Text} from 'react-native-paper';
-import { StyleSheet } from 'react-native-web';
 import { CircularProgress} from 'react-native-circular-progress-indicator';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="cards-outline" />
