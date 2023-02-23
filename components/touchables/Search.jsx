@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { Avatar, Button, Card, Text,Searchbar} from 'react-native-paper';
-import { StyleSheet } from 'react-native-web';
+import { Searchbar } from 'react-native-paper';
 
 const MyComponent = () => {
     const [searchQuery, setSearchQuery] = React.useState('');
