@@ -11,8 +11,6 @@ const Home = () => {
         <View>
             <NavBar />
             <HomeCard>
-                
-                    <Text style = {styles.text}>Welcome home {auth.user}</Text>
             </HomeCard>
         </View>
         )
