@@ -2,15 +2,15 @@ import React, { useContext } from "react"
 import { StyleSheet, Text, View } from 'react-native';
 import AuthContext from "../contexts/AuthContext";
 import HomeCard from "../components/layout/HomeCard";
+import NavBar from "../components/layout/NavBar";
 
 
 const Home = () => {
     const auth = useContext(AuthContext);
     return (
         <HomeCard>
-            {/* <View style = {styles.container}> */}
+                <NavBar />
                 <Text style = {styles.text}>Welcome home {auth.user}</Text>
-            {/* </View> */}
         </HomeCard>
         )
   }
