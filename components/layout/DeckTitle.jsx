@@ -27,7 +27,6 @@ const styles =({
     alingSelf: "center",
     fontSize: 40,
     color: "#fff",    
-    fontFamily: "sans-sherif",
     flex: 1,
   },
 })
