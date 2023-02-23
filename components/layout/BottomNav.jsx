@@ -35,7 +35,7 @@ const BottomNav = () => {
           <Tab.Screen
             name = "Study"
             compact = {true}
-            component = {Home}
+            component = {Study}
             options = {{
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="book-open-variant" color={color} size={26} />
