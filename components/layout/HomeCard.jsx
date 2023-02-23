@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
+import ProgressBar from "../displays/ProgressBar";
 
 
 const styles = StyleSheet.create({
@@ -22,6 +23,7 @@ const HomeCard = (props) => {
     return (
         <View style = {styles.Container}>
             <Text variant = "bodyLarge" style = {{textAlign:"center"}}>TODAY</Text>
+            <ProgressBar />
             { props.children }
         </View>
     )
