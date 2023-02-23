@@ -4,7 +4,7 @@ import { CircularProgress} from 'react-native-circular-progress-indicator';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="cards-outline" />
 
-const MyComponent = () => (
+const ProgressBar = () => (
     <Card style={{margin:100, backgroundColor: '#FFFFFF'}}>
       <Card.Title title="Cards Progress" left={LeftContent}/>
       <Card.Content>
@@ -29,4 +29,4 @@ const MyComponent = () => (
       </Card.Actions>
     </Card>
   );
-export default MyComponent;
+export default ProgressBar;
