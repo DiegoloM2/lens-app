@@ -8,10 +8,13 @@ import NavBar from "../components/layout/NavBar";
 const Home = () => {
     const auth = useContext(AuthContext);
     return (
-        <HomeCard>
-                <NavBar />
-                <Text style = {styles.text}>Welcome home {auth.user}</Text>
-        </HomeCard>
+        <View>
+            <NavBar />
+            <HomeCard>
+                
+                    <Text style = {styles.text}>Welcome home {auth.user}</Text>
+            </HomeCard>
+        </View>
         )
   }
 
