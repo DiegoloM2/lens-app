@@ -29,7 +29,6 @@ container: {
   justifyContent: 'center'
 },
 text: {  
-  fontFamily: "sans-sherif",
   fontSize: 35,
   color: "#fff",
 },
