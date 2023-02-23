@@ -3,6 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from "../../screens/Home";
 import Login from "../../screens/Login";
+import Study from "../../screens/Study";
 
 
 const BottomNav = () => {
@@ -34,7 +35,7 @@ const BottomNav = () => {
           <Tab.Screen
             name = "Study"
             compact = {true}
-            component = {Home}
+            component = {Study}
             options = {{
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="book-open-variant" color={color} size={26} />
