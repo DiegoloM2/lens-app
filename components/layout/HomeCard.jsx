@@ -3,6 +3,7 @@ import { View, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 import ProgressBar from "../displays/ProgressBar";
 import SearchBar from "../touchables/SearchBar";
+import DeckTitle from "../layout/DeckTitle";
 
 const styles = StyleSheet.create({
     Container: {
@@ -32,6 +33,7 @@ const HomeCard = (props) => {
             <Text variant = "bodyLarge" style = {{textAlign:"center"}}>TODAY</Text>
             <ProgressBar style = {styles.ProgBar}/>
             <SearchBar />
+            { props.decks.map((idx, deck) => <DeckTitle deck = {deck} key = {idx}/>)}
             { props.children }
         </View>
     )
