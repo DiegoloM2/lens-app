@@ -1,11 +1,11 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
 const ProgressBar = (props) => {
 
     return (
         <View {...props}>
-            
+            <Text>Progress Bar</Text>
         </View>
     )
 }

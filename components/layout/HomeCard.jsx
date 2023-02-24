@@ -13,6 +13,13 @@ const styles = StyleSheet.create({
         borderTopRightRadius: 20,
         padding: 10
     },
+    ProgBar: {
+        width: '60%',
+        borderWidth: 1, 
+        borderColor: "blue",
+        height: 160,
+        marginLeft: "20%"
+    }
 })
 
 /**
@@ -23,7 +30,7 @@ const HomeCard = (props) => {
     return (
         <View style = {styles.Container}>
             <Text variant = "bodyLarge" style = {{textAlign:"center"}}>TODAY</Text>
-            <ProgressBar />
+            <ProgressBar style = {styles.ProgBar}/>
             { props.children }
         </View>
     )
