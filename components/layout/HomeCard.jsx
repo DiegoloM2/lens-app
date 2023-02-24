@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { ScrollView, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 import ProgressBar from "../displays/ProgressBar";
 import SearchBar from "../touchables/SearchBar";
@@ -29,13 +29,13 @@ const styles = StyleSheet.create({
 const HomeCard = (props) => {
 
     return (
-        <View style = {styles.Container}>
+        <ScrollView style = {styles.Container}>
             <Text variant = "bodyLarge" style = {{textAlign:"center"}}>TODAY</Text>
             <ProgressBar style = {styles.ProgBar}/>
             <SearchBar />
             { props.decks.map((idx, deck) => <DeckTitle deck = {deck} key = {idx}/>)}
             { props.children }
-        </View>
+        </ScrollView>
     )
 }
 
