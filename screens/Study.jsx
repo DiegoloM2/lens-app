@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, View, TouchableOpacity } from "react-native";
-import { Button, Card, Text, Paper, Avatar } from "react-native-paper";
+import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
+import { Button, Card, Text, Avatar } from "react-native-paper";
+import NavBar from "../components/layout/NavBar";
 
 const TestQuestion = "What is Einsten's energy-mass equation?"
 const TestAnswer = "e = m x (c^2)"
@@ -20,7 +21,9 @@ const nextQuestion = (setShowAnswer, setAnswerShowed) => {
 
 const styles = StyleSheet.create({
     CardContainer: {
-        flex: 1,
+        flex: 6,
+        flexDirection: "column",
+        height: "100%",
         justifyContent:"center",
         alignItems: "center",
     },
@@ -34,6 +37,9 @@ const styles = StyleSheet.create({
     Button: {
         marginTop: 15
     },
+    Main: {
+        height: "100%"
+    }
 
 
 })
@@ -113,23 +119,28 @@ const Study = () => {
         )
     }
     
-    return (<View style = {styles.CardContainer}>
-            <Card style = {styles.StudyCard}>
-                <Card.Content>
-                    <View>
-                        { answerShowed && <ShowOtherSide /> }
-                        <StudyText>{ showAnswer ? TestAnswer : TestQuestion }</StudyText>
-                    </View>
-                </Card.Content>
-            </Card>
-            {answerShowed && <DifficultyPrompt setShowAnswer = {setShowAnswer} setAnswerShowed = {setAnswerShowed} />}
+    return (
+    <ScrollView contentContainerStyle = {styles.Main}>
+        <NavBar />
+        <View style = {styles.CardContainer}>
 
-            {!answerShowed && <Button mode = "contained" style = {styles.Button} 
-                onPress = {() => {setAnswerShowed(true); setShowAnswer(true)}}
-            >Show Answer</Button>}
+                <Card style = {styles.StudyCard}>
+                    <Card.Content>
+                        <View>
+                            { answerShowed && <ShowOtherSide /> }
+                            <StudyText>{ showAnswer ? TestAnswer : TestQuestion }</StudyText>
+                        </View>
+                    </Card.Content>
+                </Card>
+                {answerShowed && <DifficultyPrompt setShowAnswer = {setShowAnswer} setAnswerShowed = {setAnswerShowed} />}
+
+                {!answerShowed && <Button mode = "contained" style = {styles.Button} 
+                    onPress = {() => {setAnswerShowed(true); setShowAnswer(true)}}
+                >Show Answer</Button>}
 
 
-        </View>)
+        </View>
+    </ScrollView>)
 }
 
 export default Study;
