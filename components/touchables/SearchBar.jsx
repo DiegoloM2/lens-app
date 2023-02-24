@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
   SearchBar: {
     backgroundColor: "rgb(255, 255, 255)",
     borderRadius: 30,
-    marginTop: 15,
+    marginVertical: 15,
     borderWidth: 0.3,
     borderColor: "rgba(155, 155, 155, 0.3)", 
     marginHorizontal: 5,
