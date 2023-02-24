@@ -2,8 +2,8 @@ import * as React from 'react';
 import { Avatar, Button, Card, Text,Searchbar} from 'react-native-paper';
 import { StyleSheet } from 'react-native-web';
 
-const MyComponent = () => {
-    const [searchQuery, setSearchQuery] = React.useState('');
+const SearchBar = () => {
+    const [searchQuery, setSearchQuery] = useState('');
   
     const onChangeSearch = query => setSearchQuery(query);
   
@@ -19,4 +19,4 @@ const MyComponent = () => {
     );
   };
   
-  export default MyComponent;
+  export default SearchBar;
