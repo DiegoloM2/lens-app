@@ -62,6 +62,7 @@ const DifficultyPrompt = ({ setShowAnswer, setAnswerShowed}) => {
             width: "65%",
             backgroundColor: 'rgba(230,230,230,0.3)',
             borderRadius: 59,
+            alignItems: "center"
 
         },
         Text: {
