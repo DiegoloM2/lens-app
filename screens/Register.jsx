@@ -64,7 +64,7 @@ const RegisterForm = () => {
               
           <Button mode = "contained" disabled = {!props.isValid}>Register</Button>
 
-              <Link to = "/login" style = { styles.registerLink }>
+              <Link to = "Login" style = { styles.registerLink }>
                 Login here
               </Link>
 
