@@ -33,7 +33,7 @@ const HomeCard = (props) => {
             <Text variant = "bodyLarge" style = {{textAlign:"center"}}>TODAY</Text>
             <ProgressBar style = {styles.ProgBar}/>
             <SearchBar />
-            { props.decks.map((idx, deck) => <DeckTitle deck = {deck} key = {idx}/>)}
+            { props.decks.map((deck, idx) => <DeckTitle deck = {deck} key = {idx}/>)}
             { props.children }
         </ScrollView>
     )
