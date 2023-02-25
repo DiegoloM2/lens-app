@@ -3,6 +3,7 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-nativ
 import { Formik } from "formik";
 import Input from "../../components/forms/Input";
 import * as Yup from "yup";
+import { Headline } from "react-native-paper";
 
 const styles = StyleSheet.create({
   container: {
@@ -51,11 +52,12 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
 
   return (
     <View style={styles.container}>
+        <Headline style = {{textAlign:"center"}}>Create a Deck!</Headline>
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <>
             <Input
-                label = "Name"
+                label = "Name*"
                 placeholder = 'eg: Math and Physics'
                 onChangeText={handleChange("name")}
                 onBlur={handleBlur("name")}

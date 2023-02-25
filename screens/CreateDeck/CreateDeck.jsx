@@ -1,10 +1,15 @@
 import React from "react";
-import { ScrollView } from "react-native";
+import { ScrollView, View } from "react-native";
+import NavBar from "../../components/layout/NavBar";
 import DeckForm from "./DeckForm";
   
 
 export default CreateDeck = () => {
-    return <ScrollView>
-        <DeckForm />
-    </ScrollView>
+    return (
+      <View>
+        <NavBar />
+        <ScrollView>
+            <DeckForm />
+        </ScrollView>
+      </View>)
 }
