@@ -8,6 +8,12 @@ import { useTheme } from "react-native-paper";
 
 const Link = (props) => {
     const navigation = useNavigation();
+    const handlePress = () => {
+        if (props.screen) navigation.navigate(props.to, {screen: props.screen})
+        else {
+            navigation.navigate(props.to)
+        }
+    }
     const theme = useTheme();
     const styles = StyleSheet.create({
         link: {
@@ -16,7 +22,7 @@ const Link = (props) => {
     })
     return (
         <Text
-        onPress = {(e) => {navigation.push(props.to)}} 
+        onPress = {handlePress} 
         style = {[styles.link, props.style]}>
             {props.children}
         </Text>)

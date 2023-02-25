@@ -94,7 +94,7 @@ const LoginForm = () => {
         
           <Button mode = "contained" disabled = {!props.isValid} onPress = { (e) => {handleLoginForm(props.values, auth, navigator) }}>LOGIN</Button>
 
-              <Link to = "/register" style = { styles.registerLink }>
+              <Link to = "Register" style = { styles.registerLink }>
                 Register here
               </Link>
 
