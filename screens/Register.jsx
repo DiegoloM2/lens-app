@@ -3,7 +3,7 @@ import { Formik } from 'formik';
 import * as Yup from "yup";
 import AuthContext from "../contexts/AuthContext";
 import Link from "../components/touchables/Link";
-import {  View, StyleSheet, ScrollView} from "react-native";
+import {  View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { shadowStyle } from "../utils/styles";
 import { Button, Text, TextInput } from "react-native-paper";
 import InputEmail from "../components/forms/InputEmail";
@@ -80,6 +80,9 @@ const RegisterForm = () => {
             errors = {props.errors.username}
             />
             <View style = {registerStyles.submitButton}>
+              <TouchableOpacity>
+              <Button mode = "contained" disabled = {!props.isValid} onPress = {() => {props.submitForm()}}>Register</Button>
+              </TouchableOpacity>
             </View>
 
               <Link to = "BottomNav" style = { styles.registerLink } screen = "Login">
