@@ -65,7 +65,7 @@ const RegisterForm = () => {
               
           <Button mode = "contained" disabled = {!props.isValid}>Register</Button>
 
-              <Link to = "Login" style = { styles.registerLink }>
+              <Link to = "BottomNav" style = { styles.registerLink } screen = "Login">
                 Login here
               </Link>
 
