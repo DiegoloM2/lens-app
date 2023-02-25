@@ -3,7 +3,7 @@ import { ErrorMessage, Formik } from 'formik';
 import * as Yup from "yup";
 import AuthContext from "../contexts/AuthContext";
 import Link from "../components/touchables/Link";
-import {  View, StyleSheet} from "react-native";
+import {  View, StyleSheet, ScrollView} from "react-native";
 import { shadowStyle } from "../utils/styles";
 import { Button, Text, TextInput } from "react-native-paper";
 import InputEmail from "../components/forms/InputEmail";
@@ -12,7 +12,11 @@ import Input from "../components/forms/Input";
 import { styles, loginValidation } from "./Login";
 
 
-const registerValidation = loginValidation
+const usernameValidation = Yup.object().shape({
+  username: Yup.string().required("Username is required")
+})
+const registerValidation = loginValidation.concat(usernameValidation)
+
 
 /**
  * This is a function written to handle the submit of the login form.
@@ -50,11 +54,11 @@ const RegisterForm = () => {
         onSubmit={(values) => {handleRegisterForm(values, auth)}}
      >
       { props => (
-        <View style = {[styles.form, shadowStyle.boxShadow]}>
+        <ScrollView style = {[styles.form, shadowStyle.boxShadow]}>
           <Text style = {styles.formTitle}>Login</Text>
           
           <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
-          <InputPassword  value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
+          <InputPassword value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
           <Input
             name = "username" 
             label = 'Username' 
@@ -62,6 +66,7 @@ const RegisterForm = () => {
             left={<TextInput.Icon icon = "alien" />}
             value = {props.values.username}
             onChangeText = {props.handleChange("username")}
+            errors = {props.errors.username}
             />
               
           <Button mode = "contained" disabled = {!props.isValid}>Register</Button>
@@ -70,7 +75,7 @@ const RegisterForm = () => {
                 Login here
               </Link>
 
-        </View >
+        </ScrollView >
       )}
       </Formik>
     );
