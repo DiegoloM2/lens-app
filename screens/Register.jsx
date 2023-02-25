@@ -10,6 +10,7 @@ import InputEmail from "../components/forms/InputEmail";
 import InputPassword from "../components/forms/InputPassword";
 import Input from "../components/forms/Input";
 import { styles, loginValidation } from "./Login";
+import { useNavigation } from "@react-navigation/native";
 
 
 const usernameValidation = Yup.object().shape({
@@ -22,14 +23,18 @@ let registerStyles = StyleSheet.create({
     marginTop: 20
   }
 })
+
+
   
 /**
  * This is a function written to handle the submit of the login form.
  * @param { Array } values - takes in form values  
  * @param { AuthContext } auth - takes in auth context to login the user 
  */
-const handleRegisterForm = async (values, auth) => {
+const handleRegisterForm = async (values, auth, navigator) => {
   let response = await auth.loginUser(values.email,  values.password);
+  alert("Congrats, your learning starts now!");
+  navigator.navigate("BottomNav");
   /* Production: 
   if (response.status == 400) {
     let data = await response.json();
@@ -51,12 +56,13 @@ const handleRegisterForm = async (values, auth) => {
 
 const RegisterForm = () => {
     const auth = useContext(AuthContext);
+    const navigator = useNavigation();
 
     return (
       <Formik
         initialValues={{password: '', email: '', username: ""} }
         validationSchema={registerValidation}
-        onSubmit={(values) => {handleRegisterForm(values, auth)}}
+        onSubmit={(values) => {handleRegisterForm(values, auth, navigator)}}
      >
       { props => (
         <ScrollView style = {[styles.form, shadowStyle.boxShadow]}>
@@ -74,7 +80,6 @@ const RegisterForm = () => {
             errors = {props.errors.username}
             />
             <View style = {registerStyles.submitButton}>
-              <Button mode = "contained" disabled = {!props.isValid} >Register</Button>
             </View>
 
               <Link to = "BottomNav" style = { styles.registerLink } screen = "Login">
