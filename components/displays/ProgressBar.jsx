@@ -7,23 +7,22 @@ const ProgressBarCard = () => (
   <Card>
     <Card.Title title="Decks Progress" subtitle="Let's work" left={LeftContent} />
     <Card.Content>
-    <Text> </Text>{/*Espacio entre titulo y ProgressBar*/} 
+      <Text> </Text>{/*Espacio entre titulo y ProgressBar*/}
       <AnimatedCircularProgress
-        size={160}
-        width={25}
+        size={100}
+        width={20}
         fill={28}
         tintColor="blue"
         onAnimationComplete={() => console.log('onAnimationComplete')}
         backgroundColor="#E0F8F1" 
         rotation="0"
         lineCap="round"
-        backgroundWidth="35"/>
+        backgroundWidth="30"/>
     </Card.Content>
   
     <Card.Actions>
-      <Button color="blue">Give up</Button>
-      <Text>    </Text>
-      <Button color="blue">Keep the streak</Button>
+      <Button color="blue">Pussy</Button>
+      <Button color="blue">Keep going</Button>
     </Card.Actions>
   </Card>
 );
