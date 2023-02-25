@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import Input from "../../components/forms/Input";
 import * as Yup from "yup";
 import { Headline } from "react-native-paper";
+import Dropdown from "../../components/forms/Dropdown";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,6 +13,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
   }
 });
+
+const mockParentDecks = [
+    {label: "phyiscs", value: 1},
+    {label: "mathematics", value: 2}
+]
+
 
 const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }, onSubmit }) => {
   const validationSchema = Yup.object().shape({
@@ -41,6 +48,7 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
                 onBlur={handleBlur("description")}
                 value={values.description}
                 multiline={true}
+                errors = {errors.description}
             />
             {touched.description && errors.description && (
               <Text style={styles.error}>{errors.description}</Text>
