@@ -1,6 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
+import Input from "../../components/forms/Input";
 import * as Yup from "yup";
 
 const styles = StyleSheet.create({
@@ -44,8 +45,8 @@ const styles = StyleSheet.create({
 const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }, onSubmit }) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
-    description: Yup.string().required("Description is required"),
-    parent_deck: Yup.string().required("Parent deck is required"),
+    description: Yup.string(),
+    parent_deck: Yup.string(),
   });
 
   return (
