@@ -54,21 +54,21 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
       <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <>
-            <Text style={styles.label}>Name</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={handleChange("name")}
-              onBlur={handleBlur("name")}
-              value={values.name}
+            <Input
+                label = "Name"
+                placeholder = 'eg: Math and Physics'
+                onChangeText={handleChange("name")}
+                onBlur={handleBlur("name")}
+                value={values.name}
+                errors = {errors.name}
             />
-            {touched.name && errors.name && <Text style={styles.error}>{errors.name}</Text>}
-            <Text style={styles.label}>Description</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={handleChange("description")}
-              onBlur={handleBlur("description")}
-              value={values.description}
-              multiline={true}
+            <Input
+                label = "Description"
+                placeholder = 'A deck for the course 2IT80'
+                onChangeText={handleChange("description")}
+                onBlur={handleBlur("description")}
+                value={values.description}
+                multiline={true}
             />
             {touched.description && errors.description && (
               <Text style={styles.error}>{errors.description}</Text>
