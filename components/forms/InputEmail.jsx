@@ -17,6 +17,7 @@ const InputEmail = (props) => {
             left={<TextInput.Icon icon = "email" />}
             value = {props.value}
             onChangeText = {props.onChangeText}
+            errors = {props.errors}
         />
     )
 }

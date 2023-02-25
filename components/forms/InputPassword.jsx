@@ -14,6 +14,7 @@ const InputPassword = (props) => {
             left={<TextInput.Icon icon = "key" onPress = {(e) => {setShowPassword(!showPassword)}}/>}
             value = {props.value}
             onChangeText = {props.onChangeText}
+            errors = {props.errors}
         />
     )
 }
