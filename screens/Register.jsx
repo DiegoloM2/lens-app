@@ -76,9 +76,9 @@ const RegisterForm = () => {
 };
 
 const Register= () => (
-    <div>
+    <View>
         <RegisterForm  />
-    </div>
+    </View>
 )
 
 
