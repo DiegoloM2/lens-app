@@ -30,7 +30,7 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
   return (
     <View style={styles.container}>
         <Headline style = {{textAlign:"center"}}>Create a Deck!</Headline>
-      <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <>
             <Input
@@ -50,25 +50,14 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
                 multiline={true}
                 errors = {errors.description}
             />
-            {touched.description && errors.description && (
-              <Text style={styles.error}>{errors.description}</Text>
-            )}
-            <Text style={styles.label}>Parent Deck</Text>
-            <TextInput
-              style={styles.input}
-              onChangeText={handleChange("parent_deck")}
-              onBlur={handleBlur("parent_deck")}
-              value={values.parent_deck}
-            />
-            {touched.parent_deck && errors.parent_deck && (
-              <Text style={styles.error}>{errors.parent_deck}</Text>
-            )}
+
+            <Dropdown items = {mockParentDecks} />
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
               <Text style={styles.buttonText}>Create Deck</Text>
             </TouchableOpacity>
           </>
         )}
-      </Formik>
+        </Formik>
     </View>
   );
 };
