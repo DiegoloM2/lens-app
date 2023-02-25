@@ -8,6 +8,7 @@ import { shadowStyle } from "../utils/styles";
 import { Button, Text, TextInput } from "react-native-paper";
 import InputEmail from "../components/forms/InputEmail";
 import InputPassword from "../components/forms/InputPassword";
+import Input from "../components/forms/Input";
 import { styles, loginValidation } from "./Login";
 
 
@@ -54,7 +55,7 @@ const RegisterForm = () => {
           
           <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
           <InputPassword  value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
-          <Input 
+          <Input
             name = "username"  
             placeholder = "Toñete"
             left={<TextInput.Icon icon = "email" />}
