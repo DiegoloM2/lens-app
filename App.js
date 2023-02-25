@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomNav from "./components/layout/BottomNav";
 import { AuthProvider } from './contexts/AuthContext';
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import Register from "./screens/Register";
 
 
 const Stack = createNativeStackNavigator();
@@ -24,7 +25,10 @@ export default function App() {
     <PaperProvider theme = { theme }>
       <NavigationContainer >
         <AuthProvider>
-            <BottomNav/>
+          <Stack.Navigator>
+            <Stack.Screen name="BottomNav" component={BottomNav} options = {{headerShown: false}} />
+            <Stack.Screen name="Register" component={Register} options = {{headerShown: false}} />
+          </Stack.Navigator>
         </AuthProvider>
       </NavigationContainer>
     </PaperProvider>
