@@ -7,7 +7,7 @@ const style = StyleSheet.create({
     input: {
         borderBottomWidth: 1,
         borderBottomColor: "lightgrey",
-        marginVertical: 9,
+        marginTop: 9,
         paddingBottom: 5
       }
 })
