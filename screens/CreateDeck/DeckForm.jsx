@@ -10,37 +10,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
     backgroundColor: "#fff",
-  },
-  label: {
-    marginBottom: 5,
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  input: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    marginBottom: 20,
-    fontSize: 16,
-  },
-  error: {
-    color: "red",
-    marginBottom: 5,
-  },
-  button: {
-    backgroundColor: "#007aff",
-    borderRadius: 5,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
+  }
 });
 
 const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }, onSubmit }) => {
