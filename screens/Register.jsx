@@ -56,9 +56,10 @@ const RegisterForm = () => {
           <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
           <InputPassword  value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
           <Input
-            name = "username"  
-            placeholder = "Toñete"
-            left={<TextInput.Icon icon = "email" />}
+            name = "username" 
+            label = 'Username' 
+            placeholder = "ToñeteIsAGod"
+            left={<TextInput.Icon icon = "alien" />}
             value = {props.values.username}
             onChangeText = {props.handleChange("username")}
             />
