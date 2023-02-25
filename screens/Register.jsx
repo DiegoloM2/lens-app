@@ -17,7 +17,12 @@ const usernameValidation = Yup.object().shape({
 })
 const registerValidation = loginValidation.concat(usernameValidation)
 
-
+let registerStyles = StyleSheet.create({
+  submitButton: {
+    marginTop: 20
+  }
+})
+  
 /**
  * This is a function written to handle the submit of the login form.
  * @param { Array } values - takes in form values  
@@ -68,8 +73,9 @@ const RegisterForm = () => {
             onChangeText = {props.handleChange("username")}
             errors = {props.errors.username}
             />
-              
-          <Button mode = "contained" disabled = {!props.isValid}>Register</Button>
+            <View style = {registerStyles.submitButton}>
+              <Button mode = "contained" disabled = {!props.isValid} >Register</Button>
+            </View>
 
               <Link to = "BottomNav" style = { styles.registerLink } screen = "Login">
                 Login here
