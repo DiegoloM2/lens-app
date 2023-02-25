@@ -8,7 +8,7 @@ import { Appbar, Avatar } from 'react-native-paper';
 export default function NavBar() {
   return (
    <Appbar.Header style={styles.container}>    
-    <Avatar.Image size={30} source={require("../assets/Profile-Avatar.png")}/> 
+    <Avatar.Image size={30}/> 
     <Appbar.Content text = ""/>       
     <Appbar.Action icon="fire-circle" color="orange" />    
     <Text style={styles.text}>77</Text>
