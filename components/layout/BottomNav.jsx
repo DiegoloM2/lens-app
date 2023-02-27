@@ -2,9 +2,8 @@ import React, {useState} from "react";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from "../../screens/Home";
-import Login from "../../screens/Login";
 import Study from "../../screens/Study";
-import CreateDeck from "../../screens/CreateDeck/CreateDeck"
+import CreateDeck from "../../screens/CreateDeck";
 
 
 const BottomNav = () => {

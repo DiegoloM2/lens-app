@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
-import Input from "../../components/forms/Input";
+import Input from "./Input";
 import * as Yup from "yup";
 import { Button, Headline } from "react-native-paper";
-import Dropdown from "../../components/forms/Dropdown";
+import Dropdown from "./Dropdown";
 
 const styles = StyleSheet.create({
   container: {
@@ -14,48 +14,49 @@ const styles = StyleSheet.create({
   }
 });
 
-const mockParentDecks = [
+const mockDecks = [
     {label: "phyiscs", value: 1},
     {label: "mathematics", value: 2}
 ]
 
 
-const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }, onSubmit }) => {
+const CardForm = ({ initialValues = { question: "", answer: "", deck: ""}, onSubmit }) => {
   const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    description: Yup.string(),
-    parent_deck: Yup.string(),
+    question: Yup.string().required("Question is required"),
+    answer: Yup.string().required("Answer is required"),
+    deck: Yup.string("A deck for the card is required"),
   });
 
   return (
     <View style={styles.container}>
-        <Headline style = {{textAlign:"center"}}>Create a Deck!</Headline>
+        <Headline style = {{textAlign:"center"}}>Create a Card!</Headline>
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
           <>
             <Input
-                label = "Name*"
-                placeholder = 'eg: Math and Physics'
-                onChangeText={handleChange("name")}
-                onBlur={handleBlur("name")}
+                label = "Question*"
+                placeholder = 'eg: Who is the real god?'
+                onChangeText={handleChange("question")}
+                onBlur={handleBlur("question")}
                 value={values.name}
                 errors = {errors.name}
+                multiline = {true}
             />
             <Input
-                label = "Description"
-                placeholder = 'A deck for the course 2IT80'
-                onChangeText={handleChange("description")}
-                onBlur={handleBlur("description")}
+                label = "Answer*"
+                placeholder = 'Tonete'
+                onChangeText={handleChange("answer")}
+                onBlur={handleBlur("answer")}
                 value={values.description}
                 multiline={true}
                 errors = {errors.description}
             />
-            <Dropdown items = {mockParentDecks} 
-              handleChange = { (value) => {handleChange("parent_deck")}} 
+            <Dropdown items = {mockDecks} 
+              handleChange = { (value) => {handleChange("deck")}} 
               placeholder = "Select a deck" 
-              label = "Parent Deck"/>
+              label = "Deck*"/>
             <TouchableOpacity style={{marginTop: 25}} onPress={handleSubmit}>
-              <Button style={styles.buttonText} mode = "contained">Create Deck</Button>
+              <Button style={styles.buttonText} mode = "contained">Create Card</Button>
             </TouchableOpacity>
           </>
         )}
@@ -64,4 +65,4 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
   );
 };
 
-export default DeckForm;
+export default CardForm;
