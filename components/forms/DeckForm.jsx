@@ -1,10 +1,10 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
-import Input from "../../components/forms/Input";
+import Input from "./Input";
 import * as Yup from "yup";
 import { Button, Headline } from "react-native-paper";
-import Dropdown from "../../components/forms/Dropdown";
+import Dropdown from "./Dropdown";
 
 const styles = StyleSheet.create({
   container: {
