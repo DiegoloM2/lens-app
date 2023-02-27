@@ -3,7 +3,7 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-nativ
 import { Formik } from "formik";
 import Input from "../../components/forms/Input";
 import * as Yup from "yup";
-import { Headline } from "react-native-paper";
+import { Button, Headline } from "react-native-paper";
 import Dropdown from "../../components/forms/Dropdown";
 
 const styles = StyleSheet.create({
@@ -54,8 +54,8 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
               handleChange = { (value) => {handleChange("parent_deck")}} 
               placeholder = "Select a deck" 
               label = "Parent Deck"/>
-            <TouchableOpacity style={styles.button} onPress={handleSubmit}>
-              <Text style={styles.buttonText}>Create Deck</Text>
+            <TouchableOpacity style={{marginTop: 25}} onPress={handleSubmit}>
+              <Button style={styles.buttonText} mode = "contained">Create Deck</Button>
             </TouchableOpacity>
           </>
         )}
