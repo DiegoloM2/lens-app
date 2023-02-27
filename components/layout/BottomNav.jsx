@@ -4,6 +4,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Home from "../../screens/Home";
 import Login from "../../screens/Login";
 import Study from "../../screens/Study";
+import CreateDeck from "../../screens/CreateDeck/CreateDeck"
 
 
 const BottomNav = () => {
@@ -15,9 +16,9 @@ const BottomNav = () => {
 
         >
           <Tab.Screen
-            name = "New Card"
+            name = "New Deck"
             compact = {true}
-            component = {Login}
+            component = {CreateDeck}
             options = {{
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="card-plus" color={color} size={26} />
