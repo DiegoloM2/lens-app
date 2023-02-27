@@ -50,8 +50,10 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
                 multiline={true}
                 errors = {errors.description}
             />
-
-            <Dropdown items = {mockParentDecks} />
+            <Dropdown items = {mockParentDecks} 
+              handleChange = { (value) => {handleChange("parent_deck")}} 
+              placeholder = "Select a deck" 
+              label = "Parent Deck"/>
             <TouchableOpacity style={styles.button} onPress={handleSubmit}>
               <Text style={styles.buttonText}>Create Deck</Text>
             </TouchableOpacity>
