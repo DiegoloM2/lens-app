@@ -1,6 +1,6 @@
 import React from "react";
 import { ScrollView, View } from "react-native";
-import NavBar from "../../components/layout/NavBar";
+import NavBar from "../components/layout/NavBar";
 import DeckForm from "./DeckForm";
   
 
