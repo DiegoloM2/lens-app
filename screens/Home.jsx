@@ -26,11 +26,11 @@ const TestDecks = [
     
 ]
 
-const Home = () => {
+const Home = ({navigation}) => {
     const auth = useContext(AuthContext);
     return (
         <View>
-            <NavBar />
+            <NavBar navigation={navigation} />
             <HomeCard decks = {TestDecks}>
             </HomeCard>
         </View>

@@ -5,7 +5,7 @@ import { Text, SafeAreaView } from 'react-native';
 
 import { Appbar, Avatar } from 'react-native-paper';
 
-export default function NavBar() {
+export default function NavBar({navigation}) {
   return (
   <SafeAreaView>
    <Appbar.Header style={styles.container}>    
@@ -13,7 +13,7 @@ export default function NavBar() {
     <Appbar.Content text = ""/>       
     <Appbar.Action icon="fire-circle" color="orange" onPress={() => Alert.alert("Cooming soon! Be patient")} />    
     <Text style={styles.text}>77</Text>
-    <Appbar.Action icon="book-open-variant" onPress={() => Alert.alert("Cooming soon! Be patient")} />  
+    <Appbar.Action icon="book-open-variant" onPress={() => navigation.navigate("Study")} />  
     <Text style={styles.text}>10</Text>
    </Appbar.Header>
    </SafeAreaView>
