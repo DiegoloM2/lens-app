@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text } from 'react-native';
+import { Text, SafeAreaView } from 'react-native';
 
 
 
@@ -7,6 +7,7 @@ import { Appbar, Avatar } from 'react-native-paper';
 
 export default function NavBar() {
   return (
+  <SafeAreaView>
    <Appbar.Header style={styles.container}>    
     <Avatar.Image size={30}/> 
     <Appbar.Content text = ""/>       
@@ -15,6 +16,7 @@ export default function NavBar() {
     <Appbar.Action icon="book-open-variant" />  
     <Text style={styles.text_}>10</Text>
    </Appbar.Header>
+   </SafeAreaView>
   );
 }
 
