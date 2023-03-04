@@ -14,25 +14,23 @@ export default function NavBar() {
     <Appbar.Action icon="fire-circle" color="orange" onPress={() => Alert.alert("Cooming soon! Be patient")} />    
     <Text style={styles.text}>77</Text>
     <Appbar.Action icon="book-open-variant" onPress={() => Alert.alert("Cooming soon! Be patient")} />  
-    <Text style={styles.text_}>10</Text>
+    <Text style={styles.text}>10</Text>
    </Appbar.Header>
    </SafeAreaView>
   );
 }
 
-const styles = ({
-   text_: {
-    color: "#fff",
-     fontSize: 15,
-     flex:0.2,
-     padding: 7
-   },
-   text: {
-    color: "#fff",
-     fontSize: 15,
-     flex:0.2,
-   },
-   container: {
-     justifyContent: "space-evenly",
-   }
+const styles = ({  
+  text: {
+    fontSize: 15,
+    flex:0.2,
+  },
+  container: {
+    justifyContent: "space-evenly",
+    padding: 10,
+  },
+  avatar: {
+   left: 10,
+  }
 });
+
