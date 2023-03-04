@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Text, TouchableWithoutFeedback } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Text } from 'react-native';
+
 
 
 import { Appbar, Avatar } from 'react-native-paper';
@@ -12,9 +12,7 @@ export default function NavBar() {
     <Appbar.Content text = ""/>       
     <Appbar.Action icon="fire-circle" color="orange" />    
     <Text style={styles.text}>77</Text>
-    <TouchableWithoutFeedback>
-    <MaterialCommunityIcons name="book-open-variant" size={25} color = "dark-grey"/>
-    </TouchableWithoutFeedback>    
+    <Appbar.Action icon="book-open-variant" />  
     <Text style={styles.text_}>10</Text>
    </Appbar.Header>
   );
