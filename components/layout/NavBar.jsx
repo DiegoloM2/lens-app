@@ -9,7 +9,7 @@ export default function NavBar() {
   return (
   <SafeAreaView>
    <Appbar.Header style={styles.container}>    
-    <Avatar.Image size={30}/> 
+   <Avatar.Icon size={30} icon="alien" style={styles.avatar}/> 
     <Appbar.Content text = ""/>       
     <Appbar.Action icon="fire-circle" color="orange" />    
     <Text style={styles.text}>77</Text>
