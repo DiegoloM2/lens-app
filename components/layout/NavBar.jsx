@@ -11,9 +11,9 @@ export default function NavBar() {
    <Appbar.Header style={styles.container}>    
    <Avatar.Icon size={30} icon="alien" style={styles.avatar}/> 
     <Appbar.Content text = ""/>       
-    <Appbar.Action icon="fire-circle" color="orange" />    
+    <Appbar.Action icon="fire-circle" color="orange" onPress={() => Alert.alert("Cooming soon! Be patient")} />    
     <Text style={styles.text}>77</Text>
-    <Appbar.Action icon="book-open-variant" />  
+    <Appbar.Action icon="book-open-variant" onPress={() => Alert.alert("Cooming soon! Be patient")} />  
     <Text style={styles.text_}>10</Text>
    </Appbar.Header>
    </SafeAreaView>
