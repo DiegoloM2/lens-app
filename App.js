@@ -4,6 +4,9 @@ import BottomNav from "./components/layout/BottomNav";
 import { AuthProvider } from './contexts/AuthContext';
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Register from "./screens/Register";
+import Study from "./screens/Study";
+import Home from "./screens/Home";
+
 
 
 const Stack = createNativeStackNavigator();
@@ -28,6 +31,8 @@ export default function App() {
           <Stack.Navigator>
             <Stack.Screen name="BottomNav" component={BottomNav} options = {{headerShown: false}} />
             <Stack.Screen name="Register" component={Register} options = {{headerShown: false}} />
+            <Stack.Screen name="Study" component={Study} options = {{headerShown: false}} />
+            <Stack.Screen name="Home" component={Home} options = {{headerShown: false}} />
           </Stack.Navigator>
         </AuthProvider>
       </NavigationContainer>
