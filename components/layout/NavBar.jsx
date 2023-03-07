@@ -1,38 +1,44 @@
 import * as React from 'react';
-import { Text, TouchableWithoutFeedback } from 'react-native';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import { Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 
 import { Appbar, Avatar } from 'react-native-paper';
 
 export default function NavBar() {
+  const navigation = useNavigation();
   return (
+  <View>
    <Appbar.Header style={styles.container}>    
-    <Avatar.Image size={30}/> 
+   <Avatar.Icon size={37} icon="alien" style={styles.avatar}/> 
     <Appbar.Content text = ""/>       
-    <Appbar.Action icon="fire-circle" color="orange" />    
+    <Appbar.Action icon="fire-circle" color="orange" style = {styles.icon} onPress={() => alert("Cooming soon! Be patient")} />    
     <Text style={styles.text}>77</Text>
-    <TouchableWithoutFeedback>
-    <MaterialCommunityIcons name="book-open-variant" size={25} color = "dark-grey"/>
-    </TouchableWithoutFeedback>    
-    <Text style={styles.text_}>10</Text>
+    <Appbar.Action icon="book-open-variant" style = {styles.icon} onPress={() => navigation.navigate("Study")} />  
+    <Text style={styles.text}>10</Text>
    </Appbar.Header>
+   </View>
   );
 }
 
-const styles = ({
-   text_: {
-    color: "#fff",
-     fontSize: 15,
-     flex:0.2,
-     padding: 7
-   },
-   text: {
-    color: "#fff",
-     fontSize: 15,
-     flex:0.2,
-   },
-   container: {
-     justifyContent: "space-evenly",
-   }
+const styles = ({  
+  text: {
+    fontSize: 15,
+    flex:0.2,
+    padding: 0,
+    margin: 0,
+    right: 2,
+    color: "black",
+    fontWeight: "bold"
+  },
+  container: {
+    justifyContent: "space-evenly",
+  },
+  avatar: {
+   left: 10,
+  },
+  icon: {
+    margin: 0
+  }
 });
+
