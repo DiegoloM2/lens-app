@@ -9,11 +9,11 @@ export default function NavBar({navigation}) {
   return (
   <SafeAreaView>
    <Appbar.Header style={styles.container}>    
-   <Avatar.Icon size={30} icon="alien" style={styles.avatar}/> 
+   <Avatar.Icon size={37} icon="alien" style={styles.avatar}/> 
     <Appbar.Content text = ""/>       
-    <Appbar.Action icon="fire-circle" color="orange" onPress={() => Alert.alert("Cooming soon! Be patient")} />    
+    <Appbar.Action icon="fire-circle" color="orange" style = {styles.icon} onPress={() => alert("Cooming soon! Be patient")} />    
     <Text style={styles.text}>77</Text>
-    <Appbar.Action icon="book-open-variant" onPress={() => navigation.navigate("Study")} />  
+    <Appbar.Action icon="book-open-variant" style = {styles.icon} onPress={() => navigation.navigate("Study")} />  
     <Text style={styles.text}>10</Text>
    </Appbar.Header>
    </SafeAreaView>
@@ -24,13 +24,20 @@ const styles = ({
   text: {
     fontSize: 15,
     flex:0.2,
+    padding: 0,
+    margin: 0,
+    right: 2,
+    color: "black",
+    fontWeight: "bold"
   },
   container: {
     justifyContent: "space-evenly",
-    padding: 10,
   },
   avatar: {
    left: 10,
+  },
+  icon: {
+    margin: 0
   }
 });
 
