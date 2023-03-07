@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Text, SafeAreaView } from 'react-native';
+import { Text, View } from 'react-native';
 
 
 
@@ -7,7 +7,7 @@ import { Appbar, Avatar } from 'react-native-paper';
 
 export default function NavBar({navigation}) {
   return (
-  <SafeAreaView>
+  <View>
    <Appbar.Header style={styles.container}>    
    <Avatar.Icon size={37} icon="alien" style={styles.avatar}/> 
     <Appbar.Content text = ""/>       
@@ -16,7 +16,7 @@ export default function NavBar({navigation}) {
     <Appbar.Action icon="book-open-variant" style = {styles.icon} onPress={() => navigation.navigate("Study")} />  
     <Text style={styles.text}>10</Text>
    </Appbar.Header>
-   </SafeAreaView>
+   </View>
   );
 }
 
