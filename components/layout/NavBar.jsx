@@ -1,11 +1,12 @@
 import * as React from 'react';
 import { Text, View } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 
 
 import { Appbar, Avatar } from 'react-native-paper';
 
-export default function NavBar({navigation}) {
+export default function NavBar() {
+  const navigation = useNavigation();
   return (
   <View>
    <Appbar.Header style={styles.container}>    
