@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import AuthContext from "../contexts/AuthContext";
 import HomeCard from "../components/layout/HomeCard";
 import NavBar from "../components/layout/NavBar";
+import ProgressBarCard from "../components/displays/ProgressBarCard";
 
 const TestDecks = [
     {
@@ -31,6 +32,8 @@ const Home = () => {
     return (
         <View>
             <NavBar />
+            <ProgressBarCard />
+
         </View>
         )
   }
