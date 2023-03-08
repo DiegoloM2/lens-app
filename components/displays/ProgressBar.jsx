@@ -1,46 +1,23 @@
 import * as React from 'react';
-import { Avatar, Button, Card, Text } from 'react-native-paper';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-const LeftContent = props => <Avatar.Icon {...props} color="white" icon="cards-outline" />
+import { Text } from "react-native"
 
-const ProgressBarCard = () => (
-  <Card>
-    <Card.Title title="Decks Progress" subtitle="Let's work" left={LeftContent} />
-    <Card.Content>
-      <Text> </Text>{/*Espacio entre titulo y ProgressBar*/}
-      <AnimatedCircularProgress
-        size={100}
-        width={20}
-        fill={28}
-        tintColor="blue"
-        onAnimationComplete={() => console.log('onAnimationComplete')}
-        backgroundColor="#E0F8F1" 
-        rotation="0"
-        lineCap="round"
-        backgroundWidth="30"/>
-    </Card.Content>
-  
-    <Card.Actions>
-      <Button color="blue">Pussy</Button>
-      <Button color="blue">Keep going</Button>
-    </Card.Actions>
-  </Card>
-);
+// https://www.npmjs.com/package/react-native-circular-progress 
+const ProgressBar = (props) => (
+  <AnimatedCircularProgress
+    size={150}
+    width={5}
+    fill={59}
+    tintColor="blue"
+    backgroundColor="rgba(150,150,150,0.1)" 
+    rotation="0"
+    lineCap="round"
+    backgroundWidth="25" {...props}>
+      {(fill) => <Text style = {{color: "rgba(150,150,150,1)", fontSize: 25}}>{`${Math.round(fill)}%`}</Text>}
 
-export default ProgressBarCard;
+    </AnimatedCircularProgress>
+)
 
-{/*<AnimatedCircularProgress
-  size={200}
-  width={3}
-  fill={this.state.fill}
-  tintColor="#00e0ff"
-  backgroundColor="#3d5875">
-  {
-    (fill) => (
-      <Text>
-        { this.state.fill }
-      </Text>
-    )
-  }
-</AnimatedCircularProgress> 
-https://www.npmjs.com/package/react-native-circular-progress*/}
+
+
+export default ProgressBar;
