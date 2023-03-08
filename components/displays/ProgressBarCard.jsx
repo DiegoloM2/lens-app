@@ -13,17 +13,20 @@ const ProgressBarCard = () => {
         Card: {
             width: "87%",
             marginHorizontal: "6.5%",
-            marginTop: 50
+            marginTop: 100
         },
         progBar: {
             alignSelf: "center",
         },
+        title: {
+            fontSize: 50
+        }
     })
 
 
     return (
         <Card style = {styles.Card}>
-        <Card.Title title="Today" left={LeftContent} />
+        <Card.Title title="Today" left={LeftContent} style = {styles.title}/>
         <Card.Content>
                 <ProgressBar style = {styles.progBar }/>
         </Card.Content>

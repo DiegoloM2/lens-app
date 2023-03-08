@@ -1,36 +1,23 @@
 import * as React from 'react';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { Text } from "react-native"
 
-
-const ProgressBar = () => (
+// https://www.npmjs.com/package/react-native-circular-progress 
+const ProgressBar = (props) => (
   <AnimatedCircularProgress
-    size={100}
-    width={20}
-    fill={28}
+    size={150}
+    width={5}
+    fill={59}
     tintColor="blue"
-    onAnimationComplete={() => console.log('onAnimationComplete')}
-    backgroundColor="#E0F8F1" 
+    backgroundColor="rgba(150,150,150,0.1)" 
     rotation="0"
     lineCap="round"
-    backgroundWidth="30"/>
+    backgroundWidth="25" {...props}>
+      {(fill) => <Text style = {{color: "rgba(150,150,150,1)", fontSize: 25}}>{`${Math.round(fill)}%`}</Text>}
+
+    </AnimatedCircularProgress>
 )
 
 
 
 export default ProgressBar;
-
-{/*<AnimatedCircularProgress
-  size={200}
-  width={3}
-  fill={this.state.fill}
-  tintColor="#00e0ff"
-  backgroundColor="#3d5875">
-  {
-    (fill) => (
-      <Text>
-        { this.state.fill }
-      </Text>
-    )
-  }
-</AnimatedCircularProgress> 
-https://www.npmjs.com/package/react-native-circular-progress*/}
