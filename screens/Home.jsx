@@ -31,8 +31,6 @@ const Home = () => {
     return (
         <View>
             <NavBar />
-            <HomeCard decks = {TestDecks}>
-            </HomeCard>
         </View>
         )
   }
