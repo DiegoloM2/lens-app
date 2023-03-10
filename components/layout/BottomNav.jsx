@@ -3,7 +3,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Home from "../../screens/Home";
 import Study from "../../screens/Study";
-import CreateDeck from "../../screens/CreateDeck";
+import Deck from "../../screens/Deck";
 
 
 const BottomNav = () => {
@@ -15,12 +15,12 @@ const BottomNav = () => {
 
         >
           <Tab.Screen
-            name = "New Deck"
+            name = "Decks"
             compact = {true}
-            component = {CreateDeck}
+            component = {Deck}
             options = {{
               tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name="card-plus" color={color} size={26} />
+                <MaterialCommunityIcons name="folder-multiple" color={color} size={26} />
               ),
           }}/>
 
