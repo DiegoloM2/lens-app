@@ -6,6 +6,7 @@ import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-
 import Register from "./screens/Register";
 import Study from "./screens/Study";
 import Home from "./screens/Home";
+import DeckEditing from "./screens/DeckEditing";
 
 
 
@@ -25,7 +26,8 @@ const theme = {
 
 export default function App() {
   return (
-    <PaperProvider theme = { theme }>
+<PaperProvider theme = { theme }>
+    {/* 
       <NavigationContainer >
         <AuthProvider>
           <Stack.Navigator>
@@ -36,6 +38,8 @@ export default function App() {
           </Stack.Navigator>
         </AuthProvider>
       </NavigationContainer>
+       */} 
+       <DeckEditing/>
     </PaperProvider>
 
   );
