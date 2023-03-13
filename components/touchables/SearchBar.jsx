@@ -13,17 +13,17 @@ const styles = StyleSheet.create({
   }
 })
 
-const SearchBar = () => {
+const SearchBar = ({placeholder, icon}) => {
     const [searchQuery, setSearchQuery] = useState('');
   
     const onChangeSearch = query => setSearchQuery(query);
   
     return (
       <Searchbar
-        placeholder="Search your decks here"
+        placeholder={placeholder}
         onChangeText={onChangeSearch}
         value={searchQuery}
-        icon="cloud-search-outline"
+        icon={icon}
         showloading={true}
         testID='searchbar'
         style = {styles.SearchBar}
