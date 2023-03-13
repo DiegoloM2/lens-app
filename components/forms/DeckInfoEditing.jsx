@@ -24,6 +24,7 @@ deckname: {
   padding: 15,
   borderBottomWidth: .5,
   width: 300,
+  fontSize: 18,
   
 },
 deckdescription: {
