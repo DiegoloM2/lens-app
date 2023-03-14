@@ -10,11 +10,6 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
  * @returns 
  */
 
-const DeckSymbol = (props) => {
-    console.log(props.symbol)
-    return Boolean(props.symbol) ? <Avatar.Text style = {props.style} label = {props.symbol} />: 
-        <Avatar.Text style = {props.style} label = "📄" />
-    }   
 
 const DeckCard = (props) => {
     const styles = StyleSheet.create({
@@ -39,9 +34,8 @@ const DeckCard = (props) => {
             <Card style = {styles.card}>
                 <Card.Title
                  title={props.deck.name} titleStyle = { styles.title }
-                 subtitle = {` ${props.deck.lastStudied} · latest`} subtitleStyle = { styles.subtitle }
-                 left = {(props) => (<DeckSymbol symbol = {null} {...props} />)}  
-                 leftStyle = {styles.DeckSymbol} />
+                 subtitle = {`${props.deck.lastStudied}`} subtitleStyle = { styles.subtitle }
+                  />
                 <Card.Content>
                     <Text>
                         { props.deck.description }
