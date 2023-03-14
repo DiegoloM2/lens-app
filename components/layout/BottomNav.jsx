@@ -4,7 +4,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Home from "../../screens/Home";
 import Study from "../../screens/Study";
 import Deck from "../../screens/Deck";
+import CreateDeck from "../../screens/CreateDeck"
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+const Stack = createNativeStackNavigator();
+const DeckNavigator = () => (
+  <Stack.Navigator initialRouteName="Deck">
+    <Stack.Screen name="Deck" component={Deck} options = {{headerShown:false}}/>
+    <Stack.Screen name="Create Deck" component={CreateDeck} options = {{headerShown:false}}/>
+  </Stack.Navigator>
+)
 
 const BottomNav = () => {
   const Tab = createMaterialBottomTabNavigator();
@@ -17,7 +26,7 @@ const BottomNav = () => {
           <Tab.Screen
             name = "Decks"
             compact = {true}
-            component = {Deck}
+            component = {DeckNavigator}
             options = {{
               tabBarIcon: ({ color }) => (
                 <MaterialCommunityIcons name="folder-multiple" color={color} size={26} />
