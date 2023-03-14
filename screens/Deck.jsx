@@ -28,7 +28,7 @@ export default function Deck () {
         <ScrollView>
             <Text>Most recent</Text>
             <View style = {styles.deckCardsContainer}>
-                { TestDecks.slice(0,3).map((deck, idx) => <DeckCard deck = {deck} key = {idx} style = {styles.deckCard}/>)}
+                { TestDecks.slice(0,).map((deck, idx) => <DeckCard deck = {deck} key = {idx} style = {styles.deckCard}/>)}
             </View>
         </ScrollView>
     </View>

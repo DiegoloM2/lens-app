@@ -19,14 +19,20 @@ const DeckCard = (props) => {
             borderRadius: 7
         },
         title: {
-            fontWeight: "bold"
+            fontWeight: "bold",
+            fontSize: 14
         },
         subtitle: {
             color: "rgba(0,0,0,0.4)",
             fontWeight: "bold",
-            fontSize: 13,
-            bottom:3
-        }
+            fontSize: 10,
+            bottom:10
+        },
+        cardContent: {
+            bottom: 15,
+            fontSize: 10
+        },
+
     })
 
     return ( 
@@ -37,7 +43,7 @@ const DeckCard = (props) => {
                  subtitle = {`${props.deck.lastStudied}`} subtitleStyle = { styles.subtitle }
                   />
                 <Card.Content>
-                    <Text>
+                    <Text style = {styles.cardContent} numberOfLines = {3}>
                         { props.deck.description }
                     </Text>
                 </Card.Content>
