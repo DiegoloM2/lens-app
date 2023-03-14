@@ -9,6 +9,13 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
  * @param { StyleSheet } style - the style to be applied to the card.  
  * @returns 
  */
+
+const DeckSymbol = (props) => {
+    console.log(props.symbol)
+    return Boolean(props.symbol) ? <Avatar.Text style = {props.style} label = {props.symbol} />: 
+        <Avatar.Text style = {props.style} label = "📄" />
+    }   
+
 const DeckCard = (props) => {
     const styles = StyleSheet.create({
         card: {
@@ -27,12 +34,14 @@ const DeckCard = (props) => {
         }
     })
 
-    return (
+    return ( 
         <TouchableOpacity style = {props.style}>
             <Card style = {styles.card}>
                 <Card.Title
                  title={props.deck.name} titleStyle = { styles.title }
                  subtitle = {` ${props.deck.lastStudied} · latest`} subtitleStyle = { styles.subtitle }
+                 left = {(props) => (<DeckSymbol symbol = {null} {...props} />)}  
+                 leftStyle = {styles.DeckSymbol} />
                 <Card.Content>
                     <Text>
                         { props.deck.description }
