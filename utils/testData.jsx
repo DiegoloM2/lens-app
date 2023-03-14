@@ -21,6 +21,48 @@ export const TestDecks = [
         "remainingCards": 20,
         "description": "Deck to study English Literature and shakespearean exonomics",
         "lastStudied": "2022-11-02",
+    },
+    {
+        "name": "Literature",
+        "studiedCards": 13,
+        "remainingCards": 20,
+        "description": "Deck to study English Literature and shakespearean exonomics",
+        "lastStudied": "2022-11-02",
+    },
+    {
+        "name": "Literature",
+        "studiedCards": 13,
+        "remainingCards": 20,
+        "description": "Deck to study English Literature and shakespearean exonomics",
+        "lastStudied": "2022-11-02",
+    },
+    {
+        "name": "Literature",
+        "studiedCards": 13,
+        "remainingCards": 20,
+        "description": "Deck to study English Literature and shakespearean exonomics",
+        "lastStudied": "2022-11-02",
+    },
+    {
+        "name": "Literature",
+        "studiedCards": 13,
+        "remainingCards": 20,
+        "description": "Deck to study English Literature and shakespearean exonomics",
+        "lastStudied": "2022-11-02",
+    },
+    {
+        "name": "Literature",
+        "studiedCards": 13,
+        "remainingCards": 20,
+        "description": "Deck to study English Literature and shakespearean exonomics",
+        "lastStudied": "2022-11-02",
+    },
+    {
+        "name": "Literature",
+        "studiedCards": 13,
+        "remainingCards": 20,
+        "description": "Deck to study English Literature and shakespearean exonomics",
+        "lastStudied": "2022-11-02",
     }    
     
 ]

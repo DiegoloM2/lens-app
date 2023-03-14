@@ -16,21 +16,22 @@ const DeckCard = (props) => {
         card: {
             aspectRatio: 1,
             width: "100%",
-            borderRadius: 7
+            borderRadius: 7,
+            backgroundColor: "white",
         },
         title: {
             fontWeight: "bold",
-            fontSize: 14
+            fontSize: 17
         },
         subtitle: {
             color: "rgba(0,0,0,0.4)",
             fontWeight: "bold",
-            fontSize: 10,
+            fontSize: 11,
             bottom:10
         },
         cardContent: {
             bottom: 15,
-            fontSize: 10
+            fontSize: 12
         },
 
     })

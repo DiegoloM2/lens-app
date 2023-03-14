@@ -3,9 +3,9 @@ import { Platform } from "react-native";
 
 export const shadowStyle =  (Platform.OS === 'ios') ? 
      {
-      shadowColor: "rgba(250,250,250)",
+      shadowColor: "rgba(230,230,230)",
       shadowOffset: {width: 0, height: 0},
-      shadowOpacity: 0.3,
+      shadowOpacity: 0.5,
       shadowRadius: 10
     } : {
       elevation: 20,
