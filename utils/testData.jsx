@@ -19,7 +19,7 @@ export const TestDecks = [
         "name": "Literature",
         "studiedCards": 13,
         "remainingCards": 20,
-        "description": "Deck to study English Literature",
+        "description": "Deck to study English Literature and shakespearean exonomics",
         "lastStudied": "2022-11-02",
     }    
     
