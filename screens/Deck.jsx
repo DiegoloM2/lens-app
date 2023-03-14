@@ -6,6 +6,7 @@ import { TestDecks } from "../utils/testData.jsx";
 import { shadowStyle } from "../utils/styles";
 import SearchBar from "../components/touchables/SearchBar";
 import { useTheme } from "react-native-paper";
+import CreateButton from "../components/touchables/CreateButton";
 
 
 
@@ -64,7 +65,8 @@ export default function Deck () {
             </View>
 
 
-
         </ScrollView>
+        <CreateButton label = "Create Deck" to = "Create Deck"/>
+
     </View>
 }
