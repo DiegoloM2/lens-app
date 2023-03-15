@@ -22,14 +22,14 @@ const DATA = [
 
 export default function CardList() {
   return (
-     
+   
       <FlatList
         style={styles.flatlist}
         data={DATA}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => <CardPreview title={item.cardname} />}
       />
-    
+   
   );
 }
 
