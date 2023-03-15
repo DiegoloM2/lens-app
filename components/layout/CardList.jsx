@@ -35,6 +35,6 @@ export default function CardList() {
 
 const styles = {
   flatlist: {
-    marginTop: 50,
+    marginTop: 15,
   },
 };
