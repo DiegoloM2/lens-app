@@ -20,10 +20,11 @@ const styles = {
     top: 50,
     borderRadius: 30,
     padding: 10,
+    /*width: 330, */
   },
-  progressbar: {
+  progressbar: {   
     top: 15,
-    left: 240,
+    left: 210,
   },
 
   text: {

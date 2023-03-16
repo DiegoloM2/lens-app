@@ -7,7 +7,7 @@ import CardDiv from "../components/layout/CardDiv";
 
 export default function DeckEditing() {
   return (
-    <SafeAreaView >
+    <SafeAreaView style={styles.container}>
       <SearchBar placeholder={"Search your cards here"} />
       <DeckInfoEditing />
       <CardDiv />
@@ -16,3 +16,11 @@ export default function DeckEditing() {
 }
 
 
+const styles = {
+
+  container: {
+    padding: 10,
+  }
+
+
+}

@@ -20,17 +20,19 @@ return (
 
 const styles = {
 deckname: {
-  left: 30,
+  left: 15,
   padding: 15,
   borderBottomWidth: .5,
   width: 300,
   fontSize: 18,
   
+  
 },
 deckdescription: {
-    left: 30,
+    left: 15,
     padding: 15,
     borderBottomWidth: .5,
     width: 300,
+   
 }
 }
