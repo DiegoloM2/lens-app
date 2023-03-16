@@ -3,14 +3,18 @@ import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-nativ
 import { Formik } from "formik";
 import Input from "./Input";
 import * as Yup from "yup";
-import { Button, Headline } from "react-native-paper";
+import { Card, Button, Headline, Avatar } from "react-native-paper";
 import Dropdown from "./Dropdown";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
-    backgroundColor: "#fff",
+    padding: 20
+  },
+  card: {
+    display:"flex", 
+    alignItems:"center", 
+    justifyContent:"center",
   }
 });
 
@@ -27,40 +31,55 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
     parent_deck: Yup.string(),
   });
 
+
+
   return (
     <View style={styles.container}>
-        <Headline style = {{textAlign:"center"}}>Create a Deck!</Headline>
-        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
-          <>
-            <Input
-                label = "Name*"
-                placeholder = 'eg: Math and Physics'
-                onChangeText={handleChange("name")}
-                onBlur={handleBlur("name")}
-                value={values.name}
-                errors = {errors.name}
-            />
-            <Input
-                label = "Description"
-                placeholder = 'A deck for the course 2IT80'
-                onChangeText={handleChange("description")}
-                onBlur={handleBlur("description")}
-                value={values.description}
-                multiline={true}
-                errors = {errors.description}
-            />
-            <Dropdown items = {mockParentDecks} 
-              handleChange = { (value) => {handleChange("parent_deck")}} 
-              placeholder = "Select a deck" 
-              label = "Parent Deck"/>
-            <TouchableOpacity style={{marginTop: 25}} onPress={handleSubmit}>
-              <Button style={styles.buttonText} mode = "contained">Create Deck</Button>
-            </TouchableOpacity>
-          </>
-        )}
-        </Formik>
+      <Card style={{padding:20}}>
+        {(props)=>(
+          <div style={{width:"100%"}}>
+            <Avatar.Icon style={{flexStyle:"center"}} color="white" icon="cards-outline"/>
+          </div>
+        )()}
+
+        <View style={styles.card}>
+          <Avatar.Icon style={{flexStyle:"center"}} color="white" icon="cards-outline"/>
+          <Text style={{color:"blue", fontWeight:"bold", fontSize:"20px"}}>Let's build a deck!</Text>
+        </View>
+        
+          <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+          {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+            <>
+              <Input
+                  label = "Name*"
+                  placeholder = 'eg: Math and Physics'
+                  onChangeText={handleChange("name")}
+                  onBlur={handleBlur("name")}
+                  value={values.name}
+                  errors = {errors.name}
+              />
+              <Input
+                  label = "Description"
+                  placeholder = 'A deck for the course 2IT80'
+                  onChangeText={handleChange("description")}
+                  onBlur={handleBlur("description")}
+                  value={values.description}
+                  multiline={true}
+                  errors = {errors.description}
+              />
+              <Dropdown items = {mockParentDecks} 
+                handleChange = { (value) => {handleChange("parent_deck")}} 
+                placeholder = "Select a deck" 
+                label = "Parent Deck"/>
+              <TouchableOpacity style={{marginTop: 25}} onPress={handleSubmit}>
+                <Button style={styles.buttonText} mode = "contained">Create Deck</Button>
+              </TouchableOpacity>
+            </>
+          )}
+          </Formik>
+      </Card>
     </View>
+
   );
 };
 
