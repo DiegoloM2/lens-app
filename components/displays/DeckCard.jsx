@@ -3,6 +3,7 @@ import { Avatar, Button, Card, Text } from 'react-native-paper';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import ProgressBar from './ProgressBar';
 import IconTextContainer from './IconTextContainer';
+import { useNavigation } from '@react-navigation/native';
 
 /**
  * This card displays a deck in card form
@@ -14,6 +15,7 @@ import IconTextContainer from './IconTextContainer';
 
 
 const DeckCard = (props) => {
+    const navigator = useNavigation();
     const styles = StyleSheet.create({
         card: {
             height: '100%',
@@ -75,7 +77,7 @@ const DeckCard = (props) => {
                         </View>
                     </View>
                     <Card.Actions style = {{alignSelf: "flex-end", top: 15, }}>
-                            <Button>
+                        <Button onPress = {() => {navigator.navigate("Study")}}>
                                     Study
                             </Button>
                         <Button>
