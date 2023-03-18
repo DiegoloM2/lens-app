@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, ScrollView, TouchableOpacity } from "react-native";
 import { Button, Card, Text, Avatar } from "react-native-paper";
 import NavBar from "../components/layout/NavBar";
+import Slider from "react-native-a11y-slider";
 
 const TestQuestion = "What is Einsten's energy-mass equation?"
 const TestAnswer = "e = m x (c^2)"
@@ -44,9 +45,6 @@ const styles = StyleSheet.create({
 
 })
 
-
-
-
 const DifficultyPrompt = ({ setShowAnswer, setAnswerShowed}) => {
     const styles = StyleSheet.create({
         Container: {
@@ -58,17 +56,17 @@ const DifficultyPrompt = ({ setShowAnswer, setAnswerShowed}) => {
         Container2: {
             flex: 1,
             flexDirection: "row",
-            justifyContent: "space-around",
             width: "65%",
-            backgroundColor: 'rgba(230,230,230,0.3)',
-            borderRadius: 59,
-            alignItems: "center"
+            alignItems: "center",
+            paddingTop:"10%"
 
         },
         Text: {
             fontSize: 30,
         }, 
     })
+
+    const [difficulty, setDifficulty] = useState(0);
     const sendValue = (difficulty) => {
         alert(`Your difficulty was: ${difficulty}`);
         nextQuestion(setShowAnswer, setAnswerShowed);
@@ -77,11 +75,12 @@ const DifficultyPrompt = ({ setShowAnswer, setAnswerShowed}) => {
     <View style = {styles.Container}>
         <Text variant = "bodyLarge" style = {{textAlign:"center", fontWeight: "bold"}}>Difficulty of recall</Text>
         <View style = {styles.Container2 }>
-            <TouchableOpacity><Text style = {styles.Text} onPress = {() => {sendValue(1)}}>🥴</Text></TouchableOpacity>
+            <Slider min={1} max={10} values={[5]} onChange={(value)=>{setDifficulty(value[0])}} onSlidingComplete={(type)=>{sendValue(difficulty)}}/>
+            {/* <TouchableOpacity><Text style = {styles.Text} onPress = {() => {sendValue(1)}}>🥴</Text></TouchableOpacity>
             <TouchableOpacity><Text style = {styles.Text} onPress = {() => {sendValue(2)}}>😪</Text></TouchableOpacity>
             <TouchableOpacity><Text style = {styles.Text} onPress = {() => {sendValue(3)}}>😐</Text></TouchableOpacity>
             <TouchableOpacity><Text style = {styles.Text} onPress = {() => {sendValue(4)}}>🤗</Text></TouchableOpacity>
-            <TouchableOpacity><Text style = {styles.Text} onPress = {() => {sendValue(5)}}>😛</Text></TouchableOpacity>
+            <TouchableOpacity><Text style = {styles.Text} onPress = {() => {sendValue(5)}}>😛</Text></TouchableOpacity> */}
         </View>
     </View>
     )
