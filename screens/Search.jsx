@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
   });
   
 
-const DeckSearch = ({ availableDecks = TestDecks }) => {
+const DeckSearch = ({ route }) => {
+    const { availableDecks } = route.params;
 
     const searchbarRef = useRef(null); // Create a ref for the Searchbar component
 
@@ -60,7 +61,6 @@ const DeckSearch = ({ availableDecks = TestDecks }) => {
           onChangeText={onChangeSearch}
           value={searchQuery}
           style={styles.searchBar}
-          autofocus
         />
         <FlatList
           data={filteredDecks}
