@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native';
+import { TouchableOpacity, View, Text, FlatList, StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper';
 import { TestDecks } from '../utils/testData';
 
@@ -11,13 +12,18 @@ const styles = StyleSheet.create({
       borderBottomWidth: 1,
       borderBottomColor: '#ccc',
       padding: 10,
+
     },
     itemTitle: {
-      fontSize: 18,
+      fontSize: 14,
       fontWeight: 'bold',
+      color: "rgba(0,0,0,0.7)"
+
     },
     itemDescription: {
-      fontSize: 14,
+      fontSize: 12,
+      color: "rgba(0,0,0,0.7)"
+
     },
   });
   
@@ -47,16 +53,16 @@ const DeckSearch = ({ route }) => {
     };
   
     const renderItem = ({ item }) => (
-      <View style={styles.itemContainer}>
+      <TouchableOpacity style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <Text style={styles.itemDescription}>{item.description}</Text>
-      </View>
+      </TouchableOpacity>
     );
   
     return (
-      <View>
+      <SafeAreaView>
         <Searchbar
-            ref={searchbarRef} // Add the ref to the Searchbar component        
+          ref={searchbarRef} // Add the ref to the Searchbar component        
           placeholder="Search"
           onChangeText={onChangeSearch}
           value={searchQuery}
@@ -67,7 +73,7 @@ const DeckSearch = ({ route }) => {
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
         />
-      </View>
+      </SafeAreaView>
     );
   };
   
