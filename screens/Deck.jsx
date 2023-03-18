@@ -7,6 +7,7 @@ import { shadowStyle } from "../utils/styles";
 import SearchBar from "../components/touchables/SearchBar";
 import { useTheme } from "react-native-paper";
 import CreateButton from "../components/touchables/CreateButton";
+import Carousel from "../components/displays/DeckPreviewCarousel";
 
 
 
@@ -50,18 +51,20 @@ export default function Deck () {
 
         <ScrollView>
             <SearchBar />
-            <View style = {[styles.container]}>
+            <Carousel decks = {TestDecks.slice(0, 2)} /> 
+            {/* <View style = {[styles.container]}>
                 <Text style = {styles.containerTitle}>Recent decks</Text>
                 <View style = {styles.deckCardsContainer}>
                 { TestDecks.slice(0,2).map((deck, idx) => <DeckCard deck = {deck} key = {idx} style = {styles.deckCard}/>)}
                 </View>
+                </View>
+            */}
                 
-            </View>
             <View style = {styles.container}>
                 <Text style = {styles.containerTitle}>Other decks</Text>
 
 
-                { TestDecks.slice(2,).map((deck, idx) => <Text deck = {deck} key = {idx} style = {[styles.deckCard, {marginBottom: 30}]}>{deck.name}</Text>)}
+                { TestDecks.slice(2,).map((deck, idx) => <Text deck = {deck} key = {idx} style = {[styles.deckCard, {marginBottom: 30}]}>{deck.title}</Text>)}
             </View>
 
 
