@@ -63,16 +63,18 @@ const DeckSearch = ({ route }) => {
       <SafeAreaView>
         <Searchbar
           ref={searchbarRef} // Add the ref to the Searchbar component        
-          placeholder="Search"
+          placeholder="Search your decks"
           onChangeText={onChangeSearch}
           value={searchQuery}
           style={styles.searchBar}
         />
+        {filteredDecks.length > 0 ?         
         <FlatList
           data={filteredDecks}
           renderItem={renderItem}
           keyExtractor={(item, index) => index.toString()}
-        />
+        />: <Text style = {{textAlign: "center", marginTop: 20}}>No matches found in your decks</Text> }
+
       </SafeAreaView>
     );
   };
