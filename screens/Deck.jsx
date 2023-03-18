@@ -52,8 +52,10 @@ export default function Deck () {
 
         <ScrollView style = {{height: "100%", padding: 10}}>
                  
-                <LinkSearchBar onPress = {() => {navigator.push("Search", {availableDecks: TestDecks })}}/>
-            <View >
+                <LinkSearchBar
+                    placeholder = "Search your decks" 
+                    onPress = {() => {navigator.push("Search", {availableDecks: TestDecks })}}/>
+            <View style = {{marginTop: 25}}>
                 <Carousel decks = {TestDecks} /> 
             </View>
 
