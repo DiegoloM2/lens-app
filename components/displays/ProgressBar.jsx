@@ -5,7 +5,7 @@ import { Text } from "react-native"
 // https://www.npmjs.com/package/react-native-circular-progress 
 const ProgressBar = (props) => (
   <AnimatedCircularProgress
-    size={150}
+    size={props.size}
     width={5}
     fill={59}
     tintColor="blue"

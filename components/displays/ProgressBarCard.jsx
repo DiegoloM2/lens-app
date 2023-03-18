@@ -44,7 +44,7 @@ const ProgressBarCard = () => {
             left={LeftContent} 
             titleVariant = "headlineSmall"/>
         <Card.Content>
-                <ProgressBar style = {styles.progBar }/>
+                <ProgressBar style = {styles.progBar } size = {150}/>
         </Card.Content>
         
         <Card.Actions>

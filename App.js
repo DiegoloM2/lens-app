@@ -31,8 +31,6 @@ export default function App() {
           <Stack.Navigator>
             <Stack.Screen name="BottomNav" component={BottomNav} options = {{headerShown: false}} />
             <Stack.Screen name="Register" component={Register} options = {{headerShown: false}} />
-            <Stack.Screen name="Study" component={Study} options = {{headerShown: false}} />
-            <Stack.Screen name="Home" component={Home} options = {{headerShown: false}} />
           </Stack.Navigator>
         </AuthProvider>
       </NavigationContainer>
