@@ -13,7 +13,7 @@ const DeckNavigator = () => (
   <Stack.Navigator initialRouteName="Deck">
     <Stack.Screen name="Deck" component={Deck} options = {{headerShown:false}}/>
     <Stack.Screen name="Create Deck" component={CreateDeck} options = {{headerShown:false}}/>
-    <Stack.Screen name = "Search" component = {DeckSearch} />
+    <Stack.Screen name = "Search" component = {DeckSearch} options = {{title: "Search decks"}}/>
   </Stack.Navigator>
 )
 
