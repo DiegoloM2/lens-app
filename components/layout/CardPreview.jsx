@@ -1,20 +1,17 @@
-import * as React from 'react';
+import  React from 'react';
 import { Text, View, TouchableOpacity } from 'react-native';
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 
-export default function CardPreview() {
+export default function CardPreview({title}) {
   return (
    <View style={styles.container}>
    <View style={styles.containerText}>
    <Text style={styles.text}>
-   Card Preview
+   {title}
    </Text>
-   </View>
+   </View>   
    <TouchableOpacity onPress={() => {}} style={styles.touch}>
-   <FontAwesome name="pencil" size={35}/>
-   </TouchableOpacity>
-   <TouchableOpacity onPress={() => {}} style={styles.touch}>
-   <FontAwesome name="trash" size={35}/>
+   <FontAwesome name="arrow-right" size={24} color="black" />
    </TouchableOpacity>
    </View>
   );
@@ -24,18 +21,18 @@ const styles = ({
 container: {
   flexDirection: "row",
   padding: 10,
-  backgroundColor: "red",
-  borderRadius: 13,
-  justifyContent: 'center'
+  backgroundColor: "#E9E4E2",  
+  alingItems: 'center'
 },
-text: {  
-  fontSize: 35,
-  color: "#fff",
+text: {   
+  fontSize: 15,
+  color: "#000",
 },
 touch: {
-  flex:0.4,
+  flex:0.2,
 },
 containerText: {
   flex:2,
+  justifyContent: "center",
 }
 })

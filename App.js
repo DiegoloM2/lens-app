@@ -21,8 +21,6 @@ const theme = {
   },
 };
 
-
-
 export default function App() {
   return (
     <PaperProvider theme = { theme }>
@@ -35,7 +33,5 @@ export default function App() {
         </AuthProvider>
       </NavigationContainer>
     </PaperProvider>
-
   );
 }
-
