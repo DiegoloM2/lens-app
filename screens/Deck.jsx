@@ -2,7 +2,7 @@ import React from "react";
 import { View, SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import NavBar from "../components/layout/NavBar";
 import { TestDecks } from "../utils/testData.jsx";
-import SearchBar from "../components/touchables/SearchBar";
+import SearchBar from "../components/forms/SearchBar";
 import { Headline, useTheme } from "react-native-paper";
 import CreateButton from "../components/touchables/CreateButton";
 import Carousel from "../components/displays/DeckPreviewCarousel";
