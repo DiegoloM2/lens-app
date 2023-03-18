@@ -1,15 +1,11 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
-  
   StyleSheet,
-  Platform,
 } from 'react-native';
-import { AnimatedFAB, FAB } from 'react-native-paper';
-import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
+import { FAB } from 'react-native-paper';
 
 const CreateButton = ({
-    label,
     visible,
     style,
     to
