@@ -14,10 +14,10 @@ import { StyleSheet, TouchableOpacity } from 'react-native';
 const DeckCard = (props) => {
     const styles = StyleSheet.create({
         card: {
-            aspectRatio: 1,
-            width: "100%",
+            height: '100%',
             borderRadius: 7,
             backgroundColor: "white",
+            flexGrow: 1,
         },
         title: {
             fontWeight: "bold",
