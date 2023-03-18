@@ -1,11 +1,9 @@
 import React from "react";
-import { View, ScrollView, StyleSheet, Text } from "react-native";
-import DeckCard from "../components/displays/DeckCard";
+import { View, SafeAreaView, ScrollView, StyleSheet } from "react-native";
 import NavBar from "../components/layout/NavBar";
 import { TestDecks } from "../utils/testData.jsx";
-import { shadowStyle } from "../utils/styles";
 import SearchBar from "../components/touchables/SearchBar";
-import { useTheme } from "react-native-paper";
+import { Headline, useTheme } from "react-native-paper";
 import CreateButton from "../components/touchables/CreateButton";
 import Carousel from "../components/displays/DeckPreviewCarousel";
 
@@ -46,12 +44,13 @@ export default function Deck () {
         }
     })
 
-    return <View>
-        <NavBar />
+    return <SafeAreaView style = {{height: "100%"}}>
 
-        <ScrollView>
+        <ScrollView style = {{height: "100%", padding: 10}}>
             <SearchBar />
-            <Carousel decks = {TestDecks.slice(0, 2)} /> 
+            <View >
+                <Carousel decks = {TestDecks} /> 
+            </View>
             {/* <View style = {[styles.container]}>
                 <Text style = {styles.containerTitle}>Recent decks</Text>
                 <View style = {styles.deckCardsContainer}>
@@ -60,16 +59,16 @@ export default function Deck () {
                 </View>
             */}
                 
-            <View style = {styles.container}>
+            {/* <View style = {styles.container}>
                 <Text style = {styles.containerTitle}>Other decks</Text>
 
 
                 { TestDecks.slice(2,).map((deck, idx) => <Text deck = {deck} key = {idx} style = {[styles.deckCard, {marginBottom: 30}]}>{deck.title}</Text>)}
-            </View>
+            </View> */}
 
 
         </ScrollView>
         <CreateButton label = "Create Deck" to = "Create Deck"/>
 
-    </View>
+    </SafeAreaView>
 }

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { Avatar, Button, Card, Text } from 'react-native-paper';
-import { StyleSheet, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, TouchableOpacity } from 'react-native';
+import ProgressBar from './ProgressBar';
+import IconTextContainer from './IconTextContainer';
 
 /**
  * This card displays a deck in card form
@@ -21,35 +23,67 @@ const DeckCard = (props) => {
         },
         title: {
             fontWeight: "bold",
-            fontSize: 17
+            fontSize: 25
         },
         subtitle: {
             color: "rgba(0,0,0,0.4)",
-            fontWeight: "bold",
-            fontSize: 11,
-            bottom:10
+            fontSize: 17,
         },
         cardContent: {
-            bottom: 15,
-            fontSize: 12
+            alignItems: "center",
+            height: "73%",
+            width: "100%",
+            paddingHorizontal: 0,
+            paddingVertical: 0
+            
         },
+        statsContainer: {
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "center", 
+            height: "100%",
+            width: "100%",
+            marginTop: 10,
+        },
+        infoContainer: {
+            justifyContent: "space-around",
+            marginLeft: 20,
+        }
 
     })
 
     return ( 
-        <TouchableOpacity style = {props.style}>
             <Card style = {styles.card}>
                 <Card.Title
-                 title={props.deck.name} titleStyle = { styles.title }
-                 subtitle = {`${props.deck.lastStudied}`} subtitleStyle = { styles.subtitle }
+                style = {{marginTop: 10}}
+                 title={props.deck.title} titleStyle = { styles.title }
+                 subtitle = {props.deck.description } subtitleStyle = { styles.subtitle }
                   />
-                <Card.Content>
-                    <Text style = {styles.cardContent} numberOfLines = {3}>
-                        { props.deck.description }
-                    </Text>
+                <Card.Content style = {styles.cardContent}>
+                    <View style = {styles.statsContainer}>
+                        <ProgressBar size = {170} />
+                        <View style = {styles.infoContainer}>
+                            <IconTextContainer 
+                                icon = "book-open-variant" label = "last studied"
+                                value = {props.deck.lastStudied} iconStyle = {{color: "green"}} />
+                            <IconTextContainer 
+                                icon = "cards-outline" label = 'num of cards'
+                                value = {props.deck.studiedCards} iconStyle = {{color: "orange"}} />
+
+                                
+                        </View>
+                    </View>
+                    <Card.Actions style = {{alignSelf: "flex-end", top: 15, }}>
+                            <Button>
+                                    Study
+                            </Button>
+                        <Button>
+                            Edit
+                        </Button>
+                    </Card.Actions>
                 </Card.Content>
             </Card>
-        </TouchableOpacity>
     )
 }
 

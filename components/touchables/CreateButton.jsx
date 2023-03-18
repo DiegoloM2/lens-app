@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
   },
   fabStyle: {
-    bottom: 100,
+    bottom: 15,
     right: 16,
     position: 'absolute',
   },
