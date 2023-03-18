@@ -45,9 +45,22 @@ const styles = StyleSheet.create({
 
 })
 
-const trackMarkComponent = ()=>{
+const colors = [
+    "#49DB42", //100%
+    "#64D044",
+    "#7FC546",
+    "#9BBB48",
+    "#D1A54C", 
+    "#EC9A4E", //50%
+    "#EF8142",
+    "#F4502A",
+    "#F7371D", 
+    "#FC0505", //0% 
+
+]
+const trackMarkComponent = (value)=>{
     return (
-        <Text style={{opacity:"0.5"}}>  |</Text>
+        <Text style={{color:colors[value], marginBottom:"7.5%"}}>  {value+1+"\n"}</Text>
     )
 }
 
@@ -64,11 +77,13 @@ const DifficultyPrompt = ({ setShowAnswer, setAnswerShowed}) => {
             flexDirection: "row",
             width: "65%",
             alignItems: "center",
+            paddingTop:"10%"
         },
         Text: {
             fontSize: 30,
         }, 
     })
+    const [color, setColor] = useState(5);
 
     const sendValue = (difficulty) => {
         alert(`Your difficulty was: ${difficulty}`);
@@ -79,14 +94,16 @@ const DifficultyPrompt = ({ setShowAnswer, setAnswerShowed}) => {
         <Text variant = "bodyLarge" style = {{textAlign:"center", fontWeight: "bold"}}>Difficulty of recall</Text>
         <View style = {styles.Container2 }>
         <Slider
-                value={1}
+                value={color}
                 containerStyle={{width:"100%"}}
+                minimumTrackTintColor={colors[color-1]}
                 step={1}
                 trackMarks={[1,2,3,4,5,6,7,8,9,10]}
                 minimumValue={1}
-                renderTrackMarkComponent={trackMarkComponent}
+                renderTrackMarkComponent={(value)=>(trackMarkComponent(value))}
                 maximumValue={10}
                 thumbTintColor={"#0000ff"}
+                onValueChange={(value)=>{setColor(value)}}
                 onSlidingComplete={(value)=>{sendValue(value)}}
         />
         </View>
