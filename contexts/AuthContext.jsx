@@ -7,33 +7,76 @@ const AuthContext = createContext({});
 
 export default AuthContext;
 
+
+/**
+ * @param { string } token - the user's email 
+ */
+const setStorageToken = async (token) => {
+  try {
+    await AsyncStorage.setItem("token", token)
+  } catch (e) {
+    console.err(e);
+  }
+}
+const setStorageUser = async (user) => {
+  try {
+    await AsyncStorage.setItem('user', user);
+  } catch (e) {
+    console.err(e);
+  }
+}
+
+/**
+ * Provides the overall application with the user object and 
+ * functionality such as login, logout, register, etc.
+ * Furthermore, stores the 'email' as the token for the user in asyncStorage,
+ * as well as the password in order to check existence of a user when
+ * re-logging.
+ * @param {*} param0 
+ * @returns 
+ */
 export const AuthProvider = ({ children }) => {
     const [authToken, setAuthToken] = useState(() => null);
 
     const [user, setUser] = useState(() => null);
 
   const [loading, setLoading] = useState(true);
-  const navigation = useNavigation();
 
   const logoutUser = async () => {
     setAuthToken(null);
     setUser(null);
-    await AsyncStorage.removeItem("authToken");
-    navigation.navigate("Home");
+    await AsyncStorage.removeItem("token");
+    await AsyncStorage.removeItem("user");
+
   };
 
   const registerUser = async (email, username, password) => {
-    setAuthToken(username);
-    setUser(username);
-    await AsyncStorage.setItem("authToken", username);
-    await AsyncStorage.setItem("user", username)
+    try {
+      setAuthToken(email);
+      setUser(username);
+      await setStorageToken(email);
+      await setStorageUser(user)
+      await AsyncStorage.setItem("password", password)
+    } catch (e) {
+      console.err(e);
+    }
   }
 
+  /**
+   * A function that logs in a user and returns whether the user exists or not.
+   * @param { string } email 
+   * @param { string } password 
+   * @returns 
+   */
   const loginUser = async (email, password) => {
-    setAuthToken(email);
-    setUser(email);
-    await AsyncStorage.setItem("authToken", email)
-    await AsyncStorage.setItem("user", email)
+    const actualPassword = await AsyncStorage.getItem("password");
+    if (password = actualPassword) {
+      setAuthToken(email);
+      await AsyncStorage.setItem("token", email)
+      return true;
+    } else {
+      return false;
+    }
   }
 
   const effect = async () => {

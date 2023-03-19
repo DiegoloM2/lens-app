@@ -31,24 +31,9 @@ let registerStyles = StyleSheet.create({
  * @param { Array } values - takes in form values  
  * @param { AuthContext } auth - takes in auth context to login the user 
  */
-const handleRegisterForm = async (values, auth, navigator) => {
-  let response = await auth.loginUser(values.email,  values.password);
-  alert("Congrats, your learning starts now!");
-  navigator.navigate("BottomNav");
-  /* Production: 
-  if (response.status == 400) {
-    let data = await response.json();
-    if (data.non_field_errors) {
-      alert(data.non_field_errors[0])
-    } else {
-      if (data.email) {
-        alert(data.email[0])
-      }
-      if (data.password) {
-        alert(data.password)
-      }
-    }
-  }*/
+const handleRegisterForm = async (values, auth) => {
+  let response = await auth.registerUser(values.email, values.username,  values.password);
+  alert(`Congrats, ${auth.user} your learning starts now!`);
 }
 
 
@@ -62,7 +47,7 @@ const RegisterForm = () => {
       <Formik
         initialValues={{password: '', email: '', username: ""} }
         validationSchema={registerValidation}
-        onSubmit={(values) => {handleRegisterForm(values, auth, navigator)}}
+        onSubmit={async (values) => {handleRegisterForm(values, auth, navigator)}}
      >
       { props => (
         <ScrollView style = {[styles.form, shadowStyle.boxShadow]}>

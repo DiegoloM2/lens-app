@@ -5,7 +5,7 @@ import AuthContext from "../contexts/AuthContext";
 import Link from "../components/touchables/Link";
 import {  View, StyleSheet} from "react-native";
 import { shadowStyle } from "../utils/styles";
-import { Button, Text } from "react-native-paper";
+import { Button, HelperText, Text } from "react-native-paper";
 import InputEmail from "../components/forms/InputEmail";
 import InputPassword from "../components/forms/InputPassword";
 import { useNavigation } from "@react-navigation/native";
@@ -25,24 +25,15 @@ export const loginValidation = Yup.object({
  * @param { Array } values - takes in form values  
  * @param { AuthContext } auth - takes in auth context to login the user 
  */
-const handleLoginForm = async (values, auth, navigator) => {
+const handleLoginForm = async (values, auth, navigator, actions) => {
   let response = await auth.loginUser(values.email,  values.password);
-  navigator.push("Home")
-  /* Production: 
-  if (response.status == 400) {
-    let data = await response.json();
-    if (data.non_field_errors) {
-      alert(data.non_field_errors[0])
-    } else {
-      if (data.email) {
-        alert(data.email[0])
-      }
-      if (data.password) {
-        alert(data.password)
-      }
-    }
-  }*/
-}
+  if (response) {
+    navigator.push("Home");
+  } else {
+    actions.setStatus("The credentials you entered do not correspond to any user.");
+    actions.setSubmitting(false);
+  }
+};
 
 export const styles = StyleSheet.create({
     form: {
@@ -79,7 +70,7 @@ const LoginForm = () => {
       <Formik
         initialValues={{password: '', email: '' } }
         validationSchema={loginValidation}
-        onSubmit={(values) => {handleLoginForm(values, auth)}}
+        onSubmit={async (values, actions) => {handleLoginForm(values, auth, navigator, actions)}}
      >
       { props => (
         <View style = {[styles.form, shadowStyle.boxShadow]}>
@@ -87,8 +78,10 @@ const LoginForm = () => {
 
           <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
           <InputPassword  value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
+          {props.status && <HelperText type = 'error' style = {{textAlign: "center"}}>{props.status}</HelperText>}
+
               
-          <Button mode = "contained" disabled = {!props.isValid} onPress = { (e) => {handleLoginForm(props.values, auth, navigator) }}>LOGIN</Button>
+          <Button mode = "contained" disabled = {!props.isValid} onPress = {props.handleSubmit}>LOGIN</Button>
 
               <Link to = "Register" style = { styles.registerLink }>
                 Register here
