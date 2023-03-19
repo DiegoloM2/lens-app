@@ -5,7 +5,7 @@ import AuthContext from "../contexts/AuthContext";
 import Link from "../components/touchables/Link";
 import {  View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { shadowStyle } from "../utils/styles";
-import { Button, Text, TextInput } from "react-native-paper";
+import { Button, Text, TextInput, Surface, Avatar } from "react-native-paper";
 import InputEmail from "../components/forms/InputEmail";
 import InputPassword from "../components/forms/InputPassword";
 import Input from "../components/forms/Input";
@@ -50,11 +50,13 @@ const RegisterForm = () => {
         onSubmit={async (values) => {handleRegisterForm(values, auth, navigator)}}
      >
       { props => (
-        <ScrollView style = {[styles.form, shadowStyle.boxShadow]}>
-          <Text style = {styles.formTitle}>Login</Text>
+        <Surface style = {[styles.form, shadowStyle.boxShadow]}>
+          <View style = {styles.titleContainer}>
+            <Avatar.Icon icon = "brain" style = {styles.formIcon} size = {35}/>
+            <Text style = {styles.formTitle}>Register</Text>
+          </View>
           
           <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
-          <InputPassword value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
           <Input
             name = "username" 
             label = 'Username' 
@@ -64,6 +66,8 @@ const RegisterForm = () => {
             onChangeText = {props.handleChange("username")}
             errors = {props.errors.username}
             />
+
+          <InputPassword value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
             <View style = {registerStyles.submitButton}>
               <TouchableOpacity>
               <Button mode = "contained" disabled = {!props.isValid} onPress = {() => {props.submitForm()}}>Register</Button>
@@ -74,7 +78,7 @@ const RegisterForm = () => {
                 Login here
               </Link>
 
-        </ScrollView >
+        </Surface >
       )}
       </Formik>
     );

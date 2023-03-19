@@ -5,7 +5,7 @@ import AuthContext from "../contexts/AuthContext";
 import Link from "../components/touchables/Link";
 import {  View, StyleSheet, Alert} from "react-native";
 import { shadowStyle } from "../utils/styles";
-import { Button, HelperText, Text } from "react-native-paper";
+import { Button, HelperText, Text, Surface, Avatar } from "react-native-paper";
 import InputEmail from "../components/forms/InputEmail";
 import InputPassword from "../components/forms/InputPassword";
 import { useNavigation } from "@react-navigation/native";
@@ -45,9 +45,12 @@ export const styles = StyleSheet.create({
       padding: 15,
     },
     formTitle: {
-      fontSize: "2em",
+      fontSize: 28,
       textAlign:"center",
       fontWeight:"bold",
+      marginBottom: 10,
+      color: "blue",
+      right: 10
     },
     forgotLink: {
       marginBottom: 20,
@@ -56,8 +59,21 @@ export const styles = StyleSheet.create({
     registerLink: {
       textAlign: "center",
       marginVertical: 20,
-
+    },
+    submitButton: {
+      marginTop: 15
+    },
+    formIcon: {
+      alignSelf: "center",
+      marginBottom: 10,
+      right: 15
+    },
+    titleContainer: {
+      flexDirection: "row", alignItems: "center", justifyContent: "center", 
+      margin: 5
     }
+
+
   });
 
 
@@ -72,22 +88,26 @@ const LoginForm = () => {
         validationSchema={loginValidation}
         onSubmit={async (values, actions) => {handleLoginForm(values, auth, navigator, actions)}}
      >
+      
       { props => (
-        <View style = {[styles.form, shadowStyle.boxShadow]}>
-          <Text style = {styles.formTitle}>Login</Text>
+        <Surface style = {[styles.form, shadowStyle.boxShadow]}>
+          <View style = {styles.titleContainer}>
+            <Avatar.Icon icon = "brain" style = {styles.formIcon} size = {35}/>
+            <Text style = {styles.formTitle}>Login</Text>
+          </View>
 
           <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
           <InputPassword  value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
           {props.status && <HelperText type = 'error' style = {{textAlign: "center"}}>{props.status}</HelperText>}
 
               
-          <Button mode = "contained" disabled = {!props.isValid} onPress = {props.handleSubmit}>LOGIN</Button>
+          <Button mode = "contained" disabled = {!props.isValid} onPress = {props.handleSubmit} style = {styles.submitButton}>LOGIN</Button>
 
               <Link to = "Register" style = { styles.registerLink }>
                 Register here
               </Link>
 
-        </View >
+        </Surface >
       )}
       </Formik>
     );
@@ -95,6 +115,7 @@ const LoginForm = () => {
 
 const Login= () => (
     <View>
+      
         <LoginForm  />
     </View>
 )
