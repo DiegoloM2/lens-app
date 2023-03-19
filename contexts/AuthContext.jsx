@@ -14,14 +14,14 @@ const setStorageToken = async (token) => {
   try {
     await AsyncStorage.setItem("token", token)
   } catch (e) {
-    console.err(e);
+    console.log(e);
   }
 }
 const setStorageUser = async (user) => {
   try {
     await AsyncStorage.setItem('user', user);
   } catch (e) {
-    console.err(e);
+    console.log(e);
   }
 }
 
@@ -35,17 +35,21 @@ const setStorageUser = async (user) => {
  * @returns 
  */
 export const AuthProvider = ({ children }) => {
-    const [authToken, setAuthToken] = useState(() => null);
+    const [authToken, setAuthToken] = useState(null);
 
     const [user, setUser] = useState(() => null);
 
   const [loading, setLoading] = useState(true);
 
   const logoutUser = async () => {
-    setAuthToken(null);
-    setUser(null);
-    await setStorageToken(null);
-    await setStorageUser(null);
+    try {
+      setAuthToken(null);
+      setUser(null);
+      await AsyncStorage.removeItem("token");
+      await AsyncStorage.removeItem("user");  
+    } catch (e) {
+      console.log(e);
+    }
 
   };
 
@@ -57,7 +61,7 @@ export const AuthProvider = ({ children }) => {
       await setStorageUser(user)
       await AsyncStorage.setItem("password", password)
     } catch (e) {
-      console.err(e);
+      console.log(e);
     }
   }
 
@@ -71,7 +75,9 @@ export const AuthProvider = ({ children }) => {
     const actualPassword = await AsyncStorage.getItem("password");
     if (password = actualPassword) {
       setAuthToken(email);
-      await AsyncStorage.setItem("token", email)
+      await setStorageToken("token", email)
+      await setStorageUser('user', email)
+      setUser(email)
       return true;
     } else {
       return false;
@@ -79,10 +85,14 @@ export const AuthProvider = ({ children }) => {
   }
 
   const effect = async () => {
-    if (authToken) {
+    try {
+    let token = await AsyncStorage.getItem("token");
+    if (token) {
+      setAuthToken(token);
       let user = await AsyncStorage.getItem("user")
       setUser(user);
     }
+  } catch (e) {console.log(e)}
     setLoading(false);
   };
 

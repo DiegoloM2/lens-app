@@ -3,7 +3,7 @@ import { ErrorMessage, Formik } from 'formik';
 import * as Yup from "yup";
 import AuthContext from "../contexts/AuthContext";
 import Link from "../components/touchables/Link";
-import {  View, StyleSheet} from "react-native";
+import {  View, StyleSheet, Alert} from "react-native";
 import { shadowStyle } from "../utils/styles";
 import { Button, HelperText, Text } from "react-native-paper";
 import InputEmail from "../components/forms/InputEmail";
@@ -27,11 +27,11 @@ export const loginValidation = Yup.object({
  */
 const handleLoginForm = async (values, auth, navigator, actions) => {
   let response = await auth.loginUser(values.email,  values.password);
-  if (response) {
-    navigator.push("Home");
-  } else {
+  if (!response) {
     actions.setStatus("The credentials you entered do not correspond to any user.");
     actions.setSubmitting(false);
+  } else {
+    Alert.alert("Logged in succesfully!")
   }
 };
 
