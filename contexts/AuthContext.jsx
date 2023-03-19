@@ -73,7 +73,8 @@ export const AuthProvider = ({ children }) => {
    */
   const loginUser = async (email, password) => {
     const actualPassword = await AsyncStorage.getItem("password");
-    if (password = actualPassword) {
+    const actualToken = await AsyncStorage.getItem("token")
+    if (password == actualPassword && email == actualToken) {
       setAuthToken(email);
       await setStorageToken("token", email)
       await setStorageUser('user', email)
