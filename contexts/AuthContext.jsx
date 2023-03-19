@@ -1,6 +1,6 @@
-import React, { createContext, useEffect, useState, useSyncExternalStore } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-
+import { saveUser, loadUser, loadUsers } from "../store/storage.js";
 
 const AuthContext = createContext({});
 
@@ -13,13 +13,6 @@ export default AuthContext;
 const setStorageToken = async (token) => {
   try {
     await AsyncStorage.setItem("token", token)
-  } catch (e) {
-    console.log(e);
-  }
-}
-const setStorageUser = async (user) => {
-  try {
-    await AsyncStorage.setItem('user', user);
   } catch (e) {
     console.log(e);
   }
@@ -46,7 +39,6 @@ export const AuthProvider = ({ children }) => {
       setAuthToken(null);
       setUser(null);
       await AsyncStorage.removeItem("token");
-      await AsyncStorage.removeItem("user");  
     } catch (e) {
       console.log(e);
     }
@@ -55,15 +47,11 @@ export const AuthProvider = ({ children }) => {
 
   const registerUser = async (email, username, password) => {
     try {
+      const user = { email: email, username: username, password: password, token: email}
       setAuthToken(email);
-      setUser(username);
+      await saveUser(user)
       await setStorageToken(email);
-      await setStorageUser(user)
-      await AsyncStorage.setItem("password", password)
-      var users = await AsyncStorage.getItem('users');
-      users = users != null ? JSON.parse(users): [];
-      users.push({token: email, password: password})
-      await AsyncStorage.setItem("users", JSON.stringify(users))
+      setUser(user);
     } catch (e) {
       console.log(e);
     }
@@ -77,14 +65,12 @@ export const AuthProvider = ({ children }) => {
    */
   const loginUser = async (email, password) => {
     var userExists = false;
-    var users = await AsyncStorage.getItem('users');
-    users = JSON.parse(users);
-    users.filter((user) => {if (user.password == password && user.token.toLowerCase() == email.toLowerCase()) userExists = true;})
+    var users = await loadUsers();
+    const user = users.filter((user) => {if (user.password == password && user.email.toLowerCase() == email.toLowerCase()) userExists = true;})
   if (userExists) {
       setAuthToken(email);
-      await setStorageToken("token", email)
-      await setStorageUser('user', email)
-      setUser(email)
+      await setStorageToken(email)
+      setUser(user);
       return true;
     } else {
       return false;
@@ -96,7 +82,7 @@ export const AuthProvider = ({ children }) => {
     let token = await AsyncStorage.getItem("token");
     if (token) {
       setAuthToken(token);
-      let user = await AsyncStorage.getItem("user")
+      let user = await loadUser(token);
       setUser(user);
     }
   } catch (e) {console.log(e)}
