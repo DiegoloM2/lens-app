@@ -56,7 +56,6 @@ const App = () => {
   useEffect(() => {
     const checkAuthStatus = async () => {
       const token = await AsyncStorage.getItem("token");
-      console.log(token)
       const isAuthenticated = token !== null; // Replace with your authentication logic
       setIsLoggedIn(isAuthenticated);
     };
