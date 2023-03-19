@@ -7,7 +7,6 @@ import CardForm from "../components/forms/CardForm";
 export default CreateCard = () => {
     return (
       <View>
-        <NavBar />
         <ScrollView>
             <CardForm />
         </ScrollView>
