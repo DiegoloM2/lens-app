@@ -87,11 +87,7 @@ const LoginForm = () => {
 
           <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
           <InputPassword  value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
-      
-              <Link to = "/" style = { styles.forgotLink }>
-                Forgot your password?
-              </Link>
-        
+              
           <Button mode = "contained" disabled = {!props.isValid} onPress = { (e) => {handleLoginForm(props.values, auth, navigator) }}>LOGIN</Button>
 
               <Link to = "Register" style = { styles.registerLink }>
