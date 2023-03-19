@@ -2,7 +2,7 @@ import React from "react";
 import { ScrollView, StyleSheet } from "react-native";
 import { Text } from "react-native-paper";
 import ProgressBar from "../displays/ProgressBar";
-import SearchBar from "../touchables/SearchBar";
+import SearchBar from "../forms/SearchBar";
 import DeckTitle from "../layout/DeckTitle";
 
 const styles = StyleSheet.create({

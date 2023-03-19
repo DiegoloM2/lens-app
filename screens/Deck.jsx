@@ -1,17 +1,21 @@
 import React from "react";
-import { View, SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { View, SafeAreaView, ScrollView, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import NavBar from "../components/layout/NavBar";
 import { TestDecks } from "../utils/testData.jsx";
-import SearchBar from "../components/touchables/SearchBar";
+import SearchBar from "../components/forms/SearchBar";
 import { Headline, useTheme } from "react-native-paper";
 import CreateButton from "../components/touchables/CreateButton";
 import Carousel from "../components/displays/DeckPreviewCarousel";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import LinkSearchBar from "../components/touchables/LinkSearchBar";
+import { useNavigation } from "@react-navigation/core";
 
 
 
 
 export default function Deck () {
     const theme = useTheme();
+    const navigator = useNavigation();
 
     const styles = StyleSheet.create({
         deckCardsContainer: {
@@ -47,25 +51,13 @@ export default function Deck () {
     return <SafeAreaView style = {{height: "100%"}}>
 
         <ScrollView style = {{height: "100%", padding: 10}}>
-            <SearchBar />
-            <View >
+                 
+                <LinkSearchBar
+                    placeholder = "Search your decks" 
+                    onPress = {() => {navigator.push("Search", {availableDecks: TestDecks })}}/>
+            <View style = {{marginTop: 25}}>
                 <Carousel decks = {TestDecks} /> 
             </View>
-            {/* <View style = {[styles.container]}>
-                <Text style = {styles.containerTitle}>Recent decks</Text>
-                <View style = {styles.deckCardsContainer}>
-                { TestDecks.slice(0,2).map((deck, idx) => <DeckCard deck = {deck} key = {idx} style = {styles.deckCard}/>)}
-                </View>
-                </View>
-            */}
-                
-            {/* <View style = {styles.container}>
-                <Text style = {styles.containerTitle}>Other decks</Text>
-
-
-                { TestDecks.slice(2,).map((deck, idx) => <Text deck = {deck} key = {idx} style = {[styles.deckCard, {marginBottom: 30}]}>{deck.title}</Text>)}
-            </View> */}
-
 
         </ScrollView>
         <CreateButton label = "Create Deck" to = "Create Deck"/>
