@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { saveUser, loadUser, loadUsers } from "../store/storage.js";
+import { saveUser, loadUser, loadUsers, saveDeck, saveCard } from "../store/storage.js";
 
 const AuthContext = createContext({});
 
@@ -50,8 +50,27 @@ export const AuthProvider = ({ children }) => {
       const user = { email: email, username: username, password: password, token: email}
       setAuthToken(email);
       await saveUser(user)
-      await setStorageToken(email);
       setUser(user);
+      await setStorageToken(email);
+
+      let deck = {
+        title: "Welcome", 
+        description: "Welcome to LENS, this is your first Deck!",
+        id: Math.floor((Math.random() * 300) + 1),
+        owner: user.username
+      }
+      let card = {
+        id: Math.floor((Math.random() * 300) + 1),
+        question: "What is LENS?",
+        answer: `
+          LENS is what will get you going in your studies! With our algorithm,
+          you will be told when to study the flashcards you create so that you
+          can maximize retention in a minimum amount of time (5 minutes per day)!`,
+        deck: deck.id
+      }
+
+      await saveDeck(deck);
+      await saveCard(card);
     } catch (e) {
       console.log(e);
     }
@@ -84,6 +103,7 @@ export const AuthProvider = ({ children }) => {
       setAuthToken(token);
       let user = await loadUser(token);
       setUser(user);
+      
     }
   } catch (e) {console.log(e)}
     setLoading(false);
