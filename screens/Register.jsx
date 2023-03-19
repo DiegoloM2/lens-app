@@ -85,7 +85,7 @@ const RegisterForm = () => {
               </TouchableOpacity>
             </View>
 
-              <Link to = "BottomNav" style = { styles.registerLink } screen = "Login">
+              <Link to = "Login" style = { styles.registerLink }>
                 Login here
               </Link>
 
