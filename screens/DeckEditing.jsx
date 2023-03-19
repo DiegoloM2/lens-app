@@ -39,7 +39,7 @@ export default function DeckEditing({ route }) {
         ))
       }
     </ScrollView>
-    <CreateButton />
+    <CreateButton to = "CreateCard"/>
 
     </View>
   );
