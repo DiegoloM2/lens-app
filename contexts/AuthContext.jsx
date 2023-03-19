@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from "@react-navigation/native";
 
 
 const AuthContext = createContext({});
@@ -45,8 +44,8 @@ export const AuthProvider = ({ children }) => {
   const logoutUser = async () => {
     setAuthToken(null);
     setUser(null);
-    await AsyncStorage.removeItem("token");
-    await AsyncStorage.removeItem("user");
+    await setStorageToken(null);
+    await setStorageUser(null);
 
   };
 
