@@ -18,7 +18,6 @@ const LinkSearchBar = ({ onPress, placeholder, ...props }) => {
       borderWidth: 1,
       backgroundColor: "rgb(255, 255, 255)",
       borderRadius: 5,
-      marginVertical: 15,
       borderWidth: 0.3,
       borderColor: "rgba(155, 155, 155, 0.3)", 
       marginHorizontal: 5,
@@ -37,7 +36,7 @@ const LinkSearchBar = ({ onPress, placeholder, ...props }) => {
         activeOpacity={1}
 
       >
-        <Surface style={styles.searchbarContainer} elevation = {3}>
+        <Surface style={[styles.searchbarContainer, props.style]} elevation = {3}>
           <MaterialIcons name="search" size={24} color="#7e7e7e" />
           <Text style={styles.searchbarText}>{placeholder}</Text>
         </Surface>
