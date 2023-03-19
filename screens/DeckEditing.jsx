@@ -39,7 +39,7 @@ export default function DeckEditing({ route }) {
         ))
       }
     </ScrollView>
-    <CreateButton to = "CreateCard"/>
+    <CreateButton onPress = {() => {navigator.navigate("CreateCard", {deck: deck})} }/>
 
     </View>
   );

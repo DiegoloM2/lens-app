@@ -61,7 +61,7 @@ export default function Deck () {
             </View>
 
         </ScrollView>
-        <CreateButton label = "Create Deck" to = "Create Deck"/>
+        <CreateButton label = "Create Deck" onPress = {() => navigator.push("Create Deck")}/>
 
     </SafeAreaView>
 }

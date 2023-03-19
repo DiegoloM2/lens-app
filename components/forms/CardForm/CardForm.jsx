@@ -1,26 +1,27 @@
 import React from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
-import Input from "./Input";
+import Input from "../Input";
 import * as Yup from "yup";
-import { Button, Headline } from "react-native-paper";
-import Dropdown from "./Dropdown";
+import { Button, Headline, Avatar, Surface } from "react-native-paper";
+import Dropdown from "../Dropdown";
+import { TestDecks } from "../../../utils/testData";
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: "#fff",
-  }
+    marginTop: 30,
+    borderRadius: 10,
+    padding: 20,
+    margin: 15,
+    marginTop: 40
+  },
 });
 
-const mockDecks = [
-    {label: "phyiscs", value: 1},
-    {label: "mathematics", value: 2}
-]
+const decks = TestDecks.map((deck) => ({label: deck.title, value: deck.id}))
 
-
-const CardForm = ({ initialValues = { question: "", answer: "", deck: ""}, onSubmit }) => {
+const CardForm = ({ initialValues = { question: "", answer: "", deck: null}, onSubmit, deck }) => {
   const validationSchema = Yup.object().shape({
     question: Yup.string().required("Question is required"),
     answer: Yup.string().required("Answer is required"),
@@ -28,7 +29,8 @@ const CardForm = ({ initialValues = { question: "", answer: "", deck: ""}, onSub
   });
 
   return (
-    <View style={styles.container}>
+    <Surface style={styles.container}>
+        <Avatar.Icon icon = "cards-playing-heart-multiple-outline" size = {45} style = {{alignSelf: "center"}}/>
         <Headline style = {{textAlign:"center"}}>Create a Card!</Headline>
         <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
         {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
@@ -41,6 +43,7 @@ const CardForm = ({ initialValues = { question: "", answer: "", deck: ""}, onSub
                 value={values.name}
                 errors = {errors.name}
                 multiline = {true}
+                style = {styles.input}
             />
             <Input
                 label = "Answer*"
@@ -50,8 +53,10 @@ const CardForm = ({ initialValues = { question: "", answer: "", deck: ""}, onSub
                 value={values.description}
                 multiline={true}
                 errors = {errors.description}
+                style = {styles.input}
             />
-            <Dropdown items = {mockDecks} 
+            <Dropdown items = {decks} 
+              value = {deck.id}
               handleChange = { (value) => {handleChange("deck")}} 
               placeholder = "Select a deck" 
               label = "Deck*"/>
@@ -61,7 +66,7 @@ const CardForm = ({ initialValues = { question: "", answer: "", deck: ""}, onSub
           </>
         )}
         </Formik>
-    </View>
+    </Surface>
   );
 };
 

@@ -8,7 +8,7 @@ import { FAB } from 'react-native-paper';
 const CreateButton = ({
     visible,
     style,
-    to
+    onPress
 }) => {
     const navigator = useNavigation();
   return (
@@ -16,7 +16,7 @@ const CreateButton = ({
         icon={'plus'}
         // label={label}
         extended={false}
-        onPress={() => navigator.push(to)}
+        onPress={onPress}
         visible={visible}
         animateFrom={'right'}
         iconMode={'dynamic'}
