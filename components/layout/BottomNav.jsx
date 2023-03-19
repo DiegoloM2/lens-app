@@ -4,15 +4,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Home from "../../screens/Home";
 import Study from "../../screens/Study";
 import Deck from "../../screens/Deck";
-import CreateDeck from "../../screens/CreateDeck"
+import CreateDeck from "../../screens/CreateDeck/CreateDeck"
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DeckSearch from "../../screens/Search";
+import CreateDeckHeader from "../../screens/CreateDeck/CustomHeader";
 
 const Stack = createNativeStackNavigator();
 const DeckNavigator = () => (
   <Stack.Navigator initialRouteName="Deck">
     <Stack.Screen name="Deck" component={Deck} options = {{headerShown:false}}/>
-    <Stack.Screen name="Create Deck" component={CreateDeck} options = {{headerShown:false}}/>
+    <Stack.Screen name="Create Deck" component={CreateDeck} options ={{header: (props) => <CreateDeckHeader {...props} title="Create a Deck" />}} />
     <Stack.Screen name = "Search" component = {DeckSearch} options = {{title: "Search decks"}}/>
   </Stack.Navigator>
 )
