@@ -5,10 +5,10 @@ import { Subheading, Text, useTheme } from "react-native-paper";
 
 
 
-export default Dropdown = ({items, handleChange, placeholder, label}) => {
+export default Dropdown = ({items, handleChange, placeholder, label, value}) => {
     const { colors } = useTheme();
     const [opened, setOpened] = useState(false);
-
+    const [valueState, setValue] = useState(value)
 
     const pickerSelectStyles = StyleSheet.create({
         inputIOS: {
@@ -53,7 +53,6 @@ export default Dropdown = ({items, handleChange, placeholder, label}) => {
             borderWidth: 2
         }
       });
-    
 
 
     return (
@@ -61,8 +60,9 @@ export default Dropdown = ({items, handleChange, placeholder, label}) => {
             <Text style = {styles.label}>{label}</Text>
             <View style = {opened ? {...styles.container, ...styles.opened}: styles.container}>
             <RNPickerSelect
+                value = {valueState}
                 placeholder = {{label: placeholder, value: null}}
-                onValueChange={(value) => handleChange(value)}
+                onValueChange={(value) => setValue(value)}
                 items={items}
                 style = {pickerSelectStyles}
                 onOpen = {() => setOpened(true)}

@@ -23,7 +23,12 @@ const DeckNavigator = () => (
       options = { ({ route }) => ({title: `${route.params.deck.title}`}) }
       initialParams = {{deck: null}}
     />
-    <Stack.Screen name = "CreateCard" component = {CreateCard} options ={{title:"Create a Card!"}}/>
+    <Stack.Screen 
+      name = "CreateCard" 
+      component = {CreateCard} options ={{title:"Create a Card!"}}
+      initialParams = {{deck:null}}
+      />
+
 
   </Stack.Navigator>
 )
