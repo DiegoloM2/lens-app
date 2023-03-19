@@ -1,4 +1,4 @@
-import React, { createContext, useEffect, useState } from "react";
+import React, { createContext, useEffect, useState, useSyncExternalStore } from "react";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
@@ -60,6 +60,10 @@ export const AuthProvider = ({ children }) => {
       await setStorageToken(email);
       await setStorageUser(user)
       await AsyncStorage.setItem("password", password)
+      var users = await AsyncStorage.getItem('users');
+      users = users != null ? JSON.parse(users): [];
+      users.push({token: email, password: password})
+      await AsyncStorage.setItem("users", JSON.stringify(users))
     } catch (e) {
       console.log(e);
     }
@@ -72,9 +76,11 @@ export const AuthProvider = ({ children }) => {
    * @returns 
    */
   const loginUser = async (email, password) => {
-    const actualPassword = await AsyncStorage.getItem("password");
-    const actualToken = await AsyncStorage.getItem("token")
-    if (password == actualPassword && email == actualToken) {
+    var userExists = false;
+    var users = await AsyncStorage.getItem('users');
+    users = JSON.parse(users);
+    users.filter((user) => {if (user.password == password && user.token.toLowerCase() == email.toLowerCase()) userExists = true;})
+  if (userExists) {
       setAuthToken(email);
       await setStorageToken("token", email)
       await setStorageUser('user', email)
