@@ -9,12 +9,22 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DeckSearch from "../../screens/Search";
 import CreateDeckHeader from "../../screens/CreateDeck/CustomHeader";
 
+
+import DeckEditing from "../../screens/DeckEditing";
+import CreateCard from "../../screens/CreateCard";
+
 const Stack = createNativeStackNavigator();
 const DeckNavigator = () => (
   <Stack.Navigator initialRouteName="Deck">
     <Stack.Screen name="Deck" component={Deck} options = {{headerShown:false}}/>
     <Stack.Screen name="Create Deck" component={CreateDeck} options ={{header: (props) => <CreateDeckHeader {...props} title="Create a Deck" />}} />
     <Stack.Screen name = "Search" component = {DeckSearch} options = {{title: "Search decks"}}/>
+    <Stack.Screen name = "DeckEdit" component = {DeckEditing} 
+      options = { ({ route }) => ({title: `${route.params.deck.title}`}) }
+      initialParams = {{deck: null}}
+    />
+    <Stack.Screen name = "CreateCard" component = {CreateCard} options ={{title:"Create a Card!"}}/>
+
   </Stack.Navigator>
 )
 

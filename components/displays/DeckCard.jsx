@@ -80,7 +80,7 @@ const DeckCard = (props) => {
                         <Button onPress = {() => {navigator.navigate("Study")}}>
                                     Study
                             </Button>
-                        <Button>
+                        <Button onPress = {() => {navigator.navigate("DeckEdit", {deck: props.deck})}}>
                             Edit
                         </Button>
                     </Card.Actions>
