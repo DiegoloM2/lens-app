@@ -6,7 +6,6 @@ import AuthContext, { AuthProvider } from './contexts/AuthContext';
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Register from "./screens/Register";
 import Login from "./screens/Login";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 
