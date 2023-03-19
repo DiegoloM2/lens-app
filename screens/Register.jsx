@@ -5,7 +5,7 @@ import AuthContext from "../contexts/AuthContext";
 import Link from "../components/touchables/Link";
 import {  View, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import { shadowStyle } from "../utils/styles";
-import { Button, Text, TextInput } from "react-native-paper";
+import { Button, Text, TextInput, Surface, Avatar } from "react-native-paper";
 import InputEmail from "../components/forms/InputEmail";
 import InputPassword from "../components/forms/InputPassword";
 import Input from "../components/forms/Input";
@@ -31,24 +31,9 @@ let registerStyles = StyleSheet.create({
  * @param { Array } values - takes in form values  
  * @param { AuthContext } auth - takes in auth context to login the user 
  */
-const handleRegisterForm = async (values, auth, navigator) => {
-  let response = await auth.loginUser(values.email,  values.password);
-  alert("Congrats, your learning starts now!");
-  navigator.navigate("BottomNav");
-  /* Production: 
-  if (response.status == 400) {
-    let data = await response.json();
-    if (data.non_field_errors) {
-      alert(data.non_field_errors[0])
-    } else {
-      if (data.email) {
-        alert(data.email[0])
-      }
-      if (data.password) {
-        alert(data.password)
-      }
-    }
-  }*/
+const handleRegisterForm = async (values, auth) => {
+  let response = await auth.registerUser(values.email, values.username,  values.password);
+  alert(`Congrats, ${auth.user} your learning starts now!`);
 }
 
 
@@ -62,14 +47,16 @@ const RegisterForm = () => {
       <Formik
         initialValues={{password: '', email: '', username: ""} }
         validationSchema={registerValidation}
-        onSubmit={(values) => {handleRegisterForm(values, auth, navigator)}}
+        onSubmit={async (values) => {handleRegisterForm(values, auth, navigator)}}
      >
       { props => (
-        <ScrollView style = {[styles.form, shadowStyle.boxShadow]}>
-          <Text style = {styles.formTitle}>Login</Text>
+        <Surface style = {[styles.form, shadowStyle.boxShadow]}>
+          <View style = {styles.titleContainer}>
+            <Avatar.Icon icon = "brain" style = {styles.formIcon} size = {35}/>
+            <Text style = {styles.formTitle}>Register</Text>
+          </View>
           
           <InputEmail value = {props.values.email} onChangeText = {props.handleChange("email")} errors = {props.errors.email}/>
-          <InputPassword value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
           <Input
             name = "username" 
             label = 'Username' 
@@ -79,17 +66,19 @@ const RegisterForm = () => {
             onChangeText = {props.handleChange("username")}
             errors = {props.errors.username}
             />
+
+          <InputPassword value = {props.values.password} onChangeText = {props.handleChange("password")} errors = {props.errors.password} />
             <View style = {registerStyles.submitButton}>
               <TouchableOpacity>
               <Button mode = "contained" disabled = {!props.isValid} onPress = {() => {props.submitForm()}}>Register</Button>
               </TouchableOpacity>
             </View>
 
-              <Link to = "BottomNav" style = { styles.registerLink } screen = "Login">
+              <Link to = "Login" style = { styles.registerLink }>
                 Login here
               </Link>
 
-        </ScrollView >
+        </Surface >
       )}
       </Formik>
     );

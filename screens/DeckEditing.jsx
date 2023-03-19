@@ -34,8 +34,8 @@ export default function DeckEditing({ route }) {
         onChangeText = {onChangeSearch}
         />
       {
-        filteredCards.slice(0, 10).map((card) => (
-          <CardPreview card = {card}>{card.question}</CardPreview>
+        filteredCards.slice(0, 10).map((card, idx) => (
+          <CardPreview card = {card} key = {idx}>{card.question}</CardPreview>
         ))
       }
     </ScrollView>
