@@ -40,7 +40,6 @@ const theme = {
 
 const RootNavigator = () => {
   const auth = useContext(AuthContext);
-  console.log(auth);
   return auth.user === null ? <AuthStackNavigator />: <StackNavigator />
 }
 
