@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomNav from "./components/layout/BottomNav";
-import { AuthProvider } from './contexts/AuthContext';
+import AuthContext, { AuthProvider } from './contexts/AuthContext';
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Register from "./screens/Register";
 import Login from "./screens/Login";
@@ -37,37 +37,21 @@ const theme = {
   },
 };
 
-// export default function App() {
-//   return (
-//     <PaperProvider theme = { theme }>
-//       <NavigationContainer >
-//         <AuthProvider>
-//         </AuthProvider>
-//       </NavigationContainer>
-//     </PaperProvider>
-//   );
-// }
+
+const RootNavigator = () => {
+  const auth = useContext(AuthContext);
+  console.log(auth);
+  return auth.user === null ? <AuthStackNavigator />: <StackNavigator />
+}
 
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // Simulate checking the user's authentication status on app start
-  useEffect(() => {
-    const checkAuthStatus = async () => {
-      const token = await AsyncStorage.getItem("token");
-      const isAuthenticated = token !== null; // Replace with your authentication logic
-      setIsLoggedIn(isAuthenticated);
-    };
-
-    checkAuthStatus();
-  }, []);
 
   return (
     <PaperProvider theme = {theme}>
     <NavigationContainer>
       <AuthProvider>
-        {isLoggedIn ? <StackNavigator /> : <AuthStackNavigator />}
+        <RootNavigator />
       </AuthProvider>
     </NavigationContainer>
     </PaperProvider>
