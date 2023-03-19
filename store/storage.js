@@ -85,7 +85,9 @@ export const deleteDeck = async (id) => {
 export const getUserDecks = async (username) => {
     try {
         const queryDecks = await loadDecks();
-        return queryDecks.filter((deck) => (deck.owner == username))
+        const final = queryDecks.filter((deck) => (deck.owner == username))
+        return final;
+        
     } catch (error) {
         console.error("Error getting user decks")
     }
@@ -144,7 +146,7 @@ export const deleteCard = async (id) => {
 
 export const getDeckCards = async (deck) => {
     try {
-        const queryCards = loadCards();
+        const queryCards = await loadCards();
         return queryCards.filter((card) => card.deck == deck.id);
     } catch (error) {
         console.error(`Error getting ${deck.title}'s cards:`, error);
@@ -156,8 +158,8 @@ export const getDeckCards = async (deck) => {
 // for now it gets all cards since spaced repetition algo is not implemented in frontend.
 export const getUserCardsForToday = async (username) => {
     try { 
-        const deckQuery = getUserDecks(username);
-        const cardQuery = loadCards();
+        const deckQuery = await getUserDecks(username);
+        const cardQuery = await loadCards();
         return cardQuery.filter((card) => {
             for (deck in deckQuery) {
                 if (deck.id === cardQuery.deck) {
@@ -174,7 +176,7 @@ export const getUserCardsForToday = async (username) => {
 // Get num of studied cards for a user
 export const getTodayStudiedCards = async (username) => {
     try {
-        const deckQuery = getUserDecks(username);
+        const deckQuery = await getUserDecks(username);
         result = 0;
         deckQuery.forEach((deck) => result += deck.studiedToday)
         return result;
