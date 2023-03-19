@@ -7,6 +7,7 @@ import Deck from "../../screens/Deck";
 import CreateDeck from "../../screens/CreateDeck"
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DeckSearch from "../../screens/Search";
+import DeckEditing from "../../screens/DeckEditing";
 
 const Stack = createNativeStackNavigator();
 const DeckNavigator = () => (
@@ -14,6 +15,10 @@ const DeckNavigator = () => (
     <Stack.Screen name="Deck" component={Deck} options = {{headerShown:false}}/>
     <Stack.Screen name="Create Deck" component={CreateDeck} options = {{headerShown:false}}/>
     <Stack.Screen name = "Search" component = {DeckSearch} options = {{title: "Search decks"}}/>
+    <Stack.Screen name = "DeckEdit" component = {DeckEditing} 
+      options = {({ route }) => ({ title: `${route.params.deck.title}`  })}
+      initialParams = {{deck: null}}
+    />
   </Stack.Navigator>
 )
 
