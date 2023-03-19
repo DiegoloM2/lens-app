@@ -1,20 +1,31 @@
 import React from "react";
-import { View, FlatList, Text } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView, View, Text } from "react-native";
+import DeckInfoEditing from "../components/forms/DeckEditInfo";
 import LinkSearchBar from "../components/touchables/LinkSearchBar";
-import DeckInfoEditing from "../components/forms/DeckInfoEditing";
-import CardDiv from "../components/layout/CardDiv";
 import { useNavigation } from "@react-navigation/core";
-import { TestDecks } from "../utils/testData";
+import CreateButton from "../components/touchables/CreateButton";
+import CardPreview from "../components/layout/CardPreview";
 
-export default function DeckEditing() {
+export default function DeckEditing({ route }) {
+  const { deck } = route.params;
   const navigator = useNavigation();
+
   return (
-    <SafeAreaView style={styles.container}>
-      <LinkSearchBar placeholder={"Search your cards here"} onPress = {() => {navigator.navigate("Search", {availableDecks: TestDecks})} } />
-      <DeckInfoEditing />
-      <CardDiv />
-    </SafeAreaView>
+    <View>
+    <ScrollView style={styles.container}>
+
+      <DeckInfoEditing title = { deck.title } description = { deck.description } />
+
+      <LinkSearchBar placeholder = "Search your cards here" style = {{marginBottom: 10, marginTop: 15, marginHorizontal:0, padding: 10}} />
+      {
+        deck.cards.slice(0, 10).map((card) => (
+          <CardPreview card = {card}>{card.question}</CardPreview>
+        ))
+      }
+    </ScrollView>
+    <CreateButton />
+
+    </View>
   );
 }
 
@@ -22,7 +33,8 @@ export default function DeckEditing() {
 const styles = {
 
   container: {
-    padding: 10,
+    padding: 16,
+    height: "100%",
   }
 
 

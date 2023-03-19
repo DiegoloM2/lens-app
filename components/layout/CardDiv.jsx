@@ -3,11 +3,11 @@ import { View, Text } from "react-native";
 
 import CardList from "./CardList";
 import ProgressBar from "../displays/ProgressBar";
-
+import LinkSearchBar from "../touchables/LinkSearchBar";
 export default function CardDiv() {
   return (
     <View style={styles.container}>
-      <ProgressBar style={styles.progressbar} size={100} />
+      <LinkSearchBar placeholder = "Search your cards here" />
       <Text style={styles.text}>Cards</Text>
       <CardList />
     </View>
