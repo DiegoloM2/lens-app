@@ -17,9 +17,11 @@ const AuthStack = createNativeStackNavigator();
 
 const StackNavigator = () => (
   <DecksProvider>
+    <CardsProvider>
       <Stack.Navigator>
         <Stack.Screen name="BottomNav" component={BottomNav} options = {{headerShown: false}} />
       </Stack.Navigator>
+    </CardsProvider>
   </DecksProvider>  
 
 )
