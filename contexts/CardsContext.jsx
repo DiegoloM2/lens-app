@@ -6,7 +6,7 @@ const CardsContext = createContext();
 
 export const CardsProvider = ({ children }) => {
     const auth = useContext(AuthContext);
-    const [cardsStudiedToday, setStudiedToday] = useState(0);
+    const [cardsStudiedToday, setStudiedToday] = useState([]);
     const [cardsToStudyToday, setToStudyToday] = useState(0);
     const effect = async () => {
         try {
