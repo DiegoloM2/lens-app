@@ -57,7 +57,8 @@ export const AuthProvider = ({ children }) => {
         title: "Welcome", 
         description: "Welcome to LENS, this is your first Deck!",
         id: Math.floor((Math.random() * 300) + 1),
-        owner: user.username
+        owner: user.username,
+        studiedToday: 0
       }
       let card = {
         id: Math.floor((Math.random() * 300) + 1),

@@ -177,10 +177,17 @@ export const getUserCardsForToday = async (username) => {
 export const getTodayStudiedCards = async (username) => {
     try {
         const deckQuery = await getUserDecks(username);
-        result = 0;
+        console.log("deckQuery", deckQuery)
+        var result = 0;
         deckQuery.forEach((deck) => result += deck.studiedToday)
         return result;
     } catch (error) {
         console.error("Error getting cards studied today:", error);
     }
+}
+
+// This function clears the AsyncStorage 
+// (all users, decks, cards, it is only to be used in development.)
+export const clearStorage = async () => {
+  await AsyncStorage.clear();
 }
