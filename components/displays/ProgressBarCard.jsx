@@ -4,6 +4,7 @@ import { StyleSheet, TouchableOpacity } from "react-native";
 import ProgressBar from "./ProgressBar";
 import { useNavigation } from "@react-navigation/native";
 import { useCards } from "../../contexts/CardsContext";
+import { clearStorage } from "../../store/storage";
 
 const LeftContent = props => <Avatar.Icon {...props} color="white" icon="cards-outline" />
 
@@ -12,7 +13,7 @@ const LeftContent = props => <Avatar.Icon {...props} color="white" icon="cards-o
 
 const ProgressBarCard = () => {
     const navigator = useNavigation();
-    const { cardsToStudyToday } = useCards();
+    const { cardsToStudyToday, cardsStudiedToday } = useCards();
     const studyToday = cardsToStudyToday.length;
     const styles = StyleSheet.create({
         Card: {
@@ -46,7 +47,7 @@ const ProgressBarCard = () => {
             left={LeftContent} 
             titleVariant = "headlineSmall"/>
         <Card.Content>
-                <ProgressBar style = {styles.progBar } size = {150} fill = {studyToday == 0 ? 100: 100 * (Math.random() * studyToday / studyToday)}/>
+                <ProgressBar style = {styles.progBar } size = {150} done = {studyToday == 0 ? 100: 100 * (cardsStudiedToday / studyToday)}/>
         </Card.Content>
         
         <Card.Actions>
