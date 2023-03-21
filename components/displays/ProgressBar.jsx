@@ -20,23 +20,6 @@ const ProgressBar = (props) => (
     </AnimatedCircularProgress>
 )
 
-// const ProgressBar = (props) => {
-//   return   <AnimatedCircularProgress
-//   size={props.size}
-//   width={5}
-//   fill={59}
-//   tintColor="blue"
-//   backgroundColor="rgba(150,150,150,0.1)" 
-//   rotation="0"
-//   lineCap="round"
-//   backgroundWidth="25" {...props}>
-//     {(fill) =>{
-//       return <Text style = {{color: "rgba(150,150,150,1)", fontSize: 25}}>{`${Math.round(fill)}%`}</Text>
-//     }}
-
-//   </AnimatedCircularProgress>; 
-// }
-
 
 
 export default ProgressBar;
