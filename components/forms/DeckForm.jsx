@@ -8,6 +8,7 @@ import Dropdown from "./Dropdown";
 import { saveDeck } from "../../store/storage";
 import AuthContext from "../../contexts/AuthContext";
 import { useNavigation } from "@react-navigation/native";
+import { useDecks } from "../../contexts/DeckContext";
 
 const styles = StyleSheet.create({
   container: {
@@ -27,15 +28,19 @@ const mockParentDecks = [
     {label: "mathematics", value: 2}
 ]
 
-const handleSubmit = async (values, username, navigator) => {
+const handleSubmit = async (values, username, navigator, handleAddDeck) => {
   deck = {
     "title":values.name,
     description: values.description,
     "parent_deck":values.parent_deck,
     owner: username
   }
-  await saveDeck(deck);
-  navigator.navigate("Decks", {screen: "Deck"})
+  try {
+    handleAddDeck(deck);
+    navigator.navigate("Decks", {screen: "Deck"})
+  } catch (e) {
+    console.error("Error adding a new deck: ", e)
+  }
 }
 
 const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }}) => {
@@ -46,6 +51,7 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
   });
   const auth = useContext(AuthContext);
   const navigator = useNavigation();
+  const { handleAddDeck } = useDecks();
 
 
   return (
@@ -62,7 +68,7 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
           <Text style={{color:"blue", fontWeight:"bold", fontSize:"20px"}}>Let's build a deck!</Text>
         </View>
         
-          <Formik initialValues={initialValues} onSubmit={(values) => handleSubmit(values, auth.user.username, navigator)} validationSchema={validationSchema}>
+          <Formik initialValues={initialValues} onSubmit={(values) => handleSubmit(values, auth.user.username, navigator, handleAddDeck)} validationSchema={validationSchema}>
           {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
             <>
               <Input
