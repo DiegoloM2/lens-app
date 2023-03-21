@@ -30,8 +30,10 @@ export default function DeckEditing({ route }) {
   };
 
   const effect = async () => {
-    setInitialCards(await getDeckCards(deck));
-    setFilteredCards(initialCards); 
+    const decks = await getDeckCards(deck);
+    setInitialCards(decks);
+
+    setFilteredCards(decks); 
   }
   useEffect(() => {effect()}, [deck, cardsModified]) //cardsModified because that way on changing set of decks, update happens without refresh.
 
