@@ -108,9 +108,6 @@ const DifficultyPrompt = ({ setShowAnswer, setAnswerShowed, card}) => {
     const [color, setColor] = useState(5);
 
     const sendValue = (difficulty) => {
-
-        alert(`Your difficulty was: ${difficulty}`);
-        
         setStudiedToday(cardsStudiedToday + 1);
         setToStudyToday(cardsToStudyToday.filter((compCard) => card != compCard));
         nextQuestion(setShowAnswer, setAnswerShowed);
@@ -203,7 +200,7 @@ const Study = () => {
             <View style = {[{height: "100%", bottom: 50}, styles.noCardContainer]}>
             <Headline style = {styles.noCardText}>You have no cards left to study today!</Headline>
             <TouchableRipple>
-                <Button mode = "contained" style = {styles.createCardButton} onPress = {() => {navigator.navigate("CreateCard")}}>Create a card</Button>
+                <Button mode = "contained" style = {styles.createCardButton} onPress = {() => {navigator.navigate("CreateCard", )}}>Create a card</Button>
             </TouchableRipple>
             </View>
         </View>

@@ -27,7 +27,9 @@ const styles = StyleSheet.create({
 const CardForm = ({ initialValues = { question: "", answer: "", deck: null}, deck }) => {
   const { decks } = useDecks()
   const valDecks = decks.map((deck) => ({label: deck.title, value: deck.id}))
-  initialValues.deck = deck.id;
+  if (deck) {
+    initialValues.deck = deck.id;
+  }
   const { handleAddCard } = useCards();
   const navigator = useNavigation();
 
@@ -38,11 +40,10 @@ const CardForm = ({ initialValues = { question: "", answer: "", deck: null}, dec
       "deck":values.deck,
     }
     try {
-      console.log("Adding a card!")
       handleAddCard(card);
       // Modify deck so it fetches the new card.
-      deck.newCard = card;
-      navigator.navigate("DeckEdit", { deck: deck})
+      if (deck) navigator.navigate("DeckEdit", { deck: deck})
+      else navigator.navigate("Study")
     } catch (e) {
       console.error("Error adding a new deck: ", e)
     }
