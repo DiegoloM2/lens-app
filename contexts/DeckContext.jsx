@@ -17,7 +17,6 @@ export const DecksProvider = ({ children }) => {
     const effect = async () => {
       try {
         setDecks(await getUserDecks(auth.user.username));
-        console.log("effect");
       } catch (e) {
         console.error(e);
       }
