@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Alert } from 'react-native';
 
 
 // User: username (string), email (string:email), password (string), token (string)
@@ -100,12 +101,20 @@ export const getUserDecks = async (username) => {
     }
 }
 
-// Card: Question (string), Answer (string), next_review (date), deck (ForeignKey:deck(id))
+// Card: Question (string), Answer (string), next_review (date), deck (ForeignKey:deck(id)), lastStudied, id
 
 // Save a card
 export const saveCard = async (card) => {
   try {
-    await AsyncStorage.setItem(`card:${card.id}`, JSON.stringify(card));
+    if (!card.question) Alert.alert("Cannot create this card, Question is missing.")
+    else if (!card.answer) Alert.alert("Cannot create this card, answer is missing.")
+    else if (!card.deck) Alert.alert("Cannot create this card, deck is missing.")
+    else {
+      card.next_review = "today"
+      card.id = Math.round(5000 * Math.random());
+      card.lastStudied = "today"
+      await AsyncStorage.setItem(`card:${card.id}`, JSON.stringify(card));
+    }
   } catch (error) {
     console.error('Error saving card:', error);
   }
