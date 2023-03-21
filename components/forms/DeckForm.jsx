@@ -1,10 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
 import Input from "./Input";
 import * as Yup from "yup";
 import { Card, Button, Headline, Avatar } from "react-native-paper";
 import Dropdown from "./Dropdown";
+import { saveDeck } from "../../store/storage";
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigation } from "@react-navigation/native";
 
 const styles = StyleSheet.create({
   container: {
@@ -24,14 +27,25 @@ const mockParentDecks = [
     {label: "mathematics", value: 2}
 ]
 
+const handleSubmit = async (values, username, navigator) => {
+  deck = {
+    "title":values.name,
+    description: values.description,
+    "parent_deck":values.parent_deck,
+    owner: username
+  }
+  await saveDeck(deck);
+  navigator.navigate("Decks", {screen: "Deck"})
+}
 
-const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }, onSubmit }) => {
+const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }}) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
     description: Yup.string(),
     parent_deck: Yup.string(),
   });
-
+  const auth = useContext(AuthContext);
+  const navigator = useNavigation();
 
 
   return (
@@ -48,7 +62,7 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
           <Text style={{color:"blue", fontWeight:"bold", fontSize:"20px"}}>Let's build a deck!</Text>
         </View>
         
-          <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
+          <Formik initialValues={initialValues} onSubmit={(values) => handleSubmit(values, auth.user.username, navigator)} validationSchema={validationSchema}>
           {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
             <>
               <Input
@@ -72,8 +86,8 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
                 handleChange = { (value) => {handleChange("parent_deck")}} 
                 placeholder = "Select a deck" 
                 label = "Parent Deck"/>
-              <TouchableOpacity style={{marginTop: 25}} onPress={handleSubmit}>
-                <Button style={styles.buttonText} mode = "contained">Create Deck</Button>
+              <TouchableOpacity style={{marginTop: 25}}>
+                <Button style={styles.buttonText} mode = "contained" onPress = {handleSubmit}>Create Deck</Button>
               </TouchableOpacity>
             </>
           )}
