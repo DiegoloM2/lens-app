@@ -4,7 +4,7 @@ import DeckInfoEditing from "../components/forms/DeckEditInfo";
 import LinkSearchBar from "../components/touchables/LinkSearchBar";
 import { useNavigation } from "@react-navigation/core";
 import CreateButton from "../components/touchables/CreateButton";
-import CardPreview from "../components/layout/CardPreview";
+import CardPreview from "../components/displays/CardPreview";
 import { Searchbar } from "react-native-paper";
 import { getDeckCards } from "../store/storage";
 import { useCards } from "../contexts/CardsContext";
