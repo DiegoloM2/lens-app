@@ -6,6 +6,7 @@ import AuthContext from "../../contexts/AuthContext"
 
 
 import { Appbar, Avatar } from 'react-native-paper';
+import { useCards } from '../../contexts/CardsContext';
 
 
 const ProfileMenu = () => {
@@ -30,6 +31,8 @@ const ProfileMenu = () => {
 
 
 export default function NavBar() {
+  const { cardsToStudyToday } = useCards();
+  const toStudyToday = cardsToStudyToday.length;
   const navigation = useNavigation();
   return (
   <View>
@@ -37,9 +40,9 @@ export default function NavBar() {
     <ProfileMenu />
     <View style = {{flexDirection: "row", alignItems: "center", justifyContent: 'flex-end'}}>
       <Appbar.Action icon="fire-circle" color="orange" style = {styles.icon} onPress={() => alert("Cooming soon! Be patient")} />    
-      <Text style={styles.text}>77</Text>
+      <Text style={styles.text}>0</Text>
       <Appbar.Action icon="book-open-variant" style = {styles.icon} onPress={() => navigation.navigate("Study")} />  
-      <Text style={styles.text}>10</Text>
+      <Text style={styles.text}>{toStudyToday}</Text>
     </View>
    </Appbar.Header>
    </View>

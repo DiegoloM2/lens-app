@@ -6,6 +6,9 @@ import * as Yup from "yup";
 import { Button, Headline, Avatar, Surface } from "react-native-paper";
 import Dropdown from "../Dropdown";
 import { TestDecks } from "../../../utils/testData";
+import { useCards } from "../../../contexts/CardsContext";
+import { useNavigation } from "@react-navigation/native";
+import { useDecks } from "../../../contexts/DeckContext";
 
 const styles = StyleSheet.create({
   container: {
@@ -19,9 +22,33 @@ const styles = StyleSheet.create({
   },
 });
 
-const decks = TestDecks.map((deck) => ({label: deck.title, value: deck.id}))
 
-const CardForm = ({ initialValues = { question: "", answer: "", deck: null}, onSubmit, deck }) => {
+
+const CardForm = ({ initialValues = { question: "", answer: "", deck: null}, deck }) => {
+  const { decks } = useDecks()
+  const valDecks = decks.map((deck) => ({label: deck.title, value: deck.id}))
+  if (deck) {
+    initialValues.deck = deck.id;
+  }
+  const { handleAddCard } = useCards();
+  const navigator = useNavigation();
+
+  const onSubmit = (values) => {
+    const card = {
+      "question":values.question,
+      answer: values.answer,
+      "deck":values.deck,
+    }
+    try {
+      handleAddCard(card);
+      // Modify deck so it fetches the new card.
+      if (deck) navigator.navigate("DeckEdit", { deck: deck})
+      else navigator.navigate("Study")
+    } catch (e) {
+      console.error("Error adding a new deck: ", e)
+    }
+  }
+
   const validationSchema = Yup.object().shape({
     question: Yup.string().required("Question is required"),
     answer: Yup.string().required("Answer is required"),
@@ -32,8 +59,8 @@ const CardForm = ({ initialValues = { question: "", answer: "", deck: null}, onS
     <Surface style={styles.container}>
         <Avatar.Icon icon = "cards-playing-heart-multiple-outline" size = {45} style = {{alignSelf: "center"}}/>
         <Headline style = {{textAlign:"center"}}>Create a Card!</Headline>
-        <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+        <Formik initialValues={initialValues} onSubmit={(values) => onSubmit(values)} validationSchema={validationSchema}>
+        {({ handleChange, handleBlur, handleSubmit, values, errors, setFieldValue, isValid }) => (
           <>
             <Input
                 label = "Question*"
@@ -55,13 +82,14 @@ const CardForm = ({ initialValues = { question: "", answer: "", deck: null}, onS
                 errors = {errors.description}
                 style = {styles.input}
             />
-            <Dropdown items = {decks} 
-              value = {deck.id}
-              handleChange = { (value) => {handleChange("deck")}} 
+            <Dropdown items = {valDecks} 
+              value = {values.deck}
+              handleChange = {setFieldValue}
+              fieldName = "deck"
               placeholder = "Select a deck" 
-              label = "Deck*"/>
-            <TouchableOpacity style={{marginTop: 25}} onPress={handleSubmit}>
-              <Button style={styles.buttonText} mode = "contained">Create Card</Button>
+              label = "Deck*" />
+            <TouchableOpacity style={{marginTop: 25}} >
+              <Button style={styles.buttonText} mode = "contained" disabled = {!isValid} onPress={() => onSubmit(values)} >Create Card</Button>
             </TouchableOpacity>
           </>
         )}

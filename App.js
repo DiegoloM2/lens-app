@@ -6,7 +6,8 @@ import AuthContext, { AuthProvider } from './contexts/AuthContext';
 import { MD3LightTheme as DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
 import Register from "./screens/Register";
 import Login from "./screens/Login";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { DecksProvider } from "./contexts/DeckContext";
+import { CardsProvider } from "./contexts/CardsContext";
 
 
 
@@ -15,12 +16,18 @@ const AuthStack = createNativeStackNavigator();
 
 
 const StackNavigator = () => (
-    <Stack.Navigator>
-      <Stack.Screen name="BottomNav" component={BottomNav} options = {{headerShown: false}} />
-    </Stack.Navigator>
+  <DecksProvider>
+    <CardsProvider>
+      <Stack.Navigator>
+        <Stack.Screen name="BottomNav" component={BottomNav} options = {{headerShown: false}} />
+      </Stack.Navigator>
+    </CardsProvider>
+  </DecksProvider>  
+
 )
 
 const AuthStackNavigator = () => (
+  
   <AuthStack.Navigator>
     <Stack.Screen name = "Login" component = {Login} options = {{headerShown:false}} />
     <Stack.Screen name="Register" component={Register} options = {{headerShown: false}} />

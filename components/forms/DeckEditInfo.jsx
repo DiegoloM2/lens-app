@@ -1,13 +1,22 @@
 import React, {useState} from 'react';
 import {View, TextInput, StyleSheet, Alert} from "react-native";
+import { useDecks } from '../../contexts/DeckContext';
 
 
 /**
  * A simple form to edit a Deck's title and description.
  */
-const DeckEditInfo = ({ title, description}) => {
-  const [titleValue, setTitle] = useState(title);
-  const [descriptionValue, setDescription] = useState(description);
+const DeckEditInfo = ({ deck }) => {
+  const [titleValue, setTitle] = useState(deck.title);
+  const [descriptionValue, setDescription] = useState(deck.description);
+
+  const { handleUpdateDeck } = useDecks();
+
+  const handleEditDeck = ({title = null, description = null}) => {
+    if (title) deck.title = title;
+    if (description) deck.description = description;
+    handleUpdateDeck(deck); 
+  }
 
   return (
     <View style={styles.container}>
@@ -15,14 +24,14 @@ const DeckEditInfo = ({ title, description}) => {
         style={styles.titleInput}
         value={titleValue}
         onChangeText={setTitle}
-        onSubmitEditing = {() => {Alert.alert(`New title is ${titleValue}`)}}
+        onSubmitEditing = {() => {handleEditDeck({ title: titleValue, description: descriptionValue})}}
       />
       <TextInput
         style={styles.descriptionInput}
         value={descriptionValue}
         onChangeText={setDescription}
         multiline={true}
-        onSubmitEditing = {() => {Alert.alert(`New description is ${descriptionValue}`)}}
+        onSubmitEditing = {() => {handleEditDeck({ title: titleValue, description: descriptionValue})}}
 
       />
     </View>

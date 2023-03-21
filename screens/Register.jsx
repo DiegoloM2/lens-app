@@ -33,7 +33,7 @@ let registerStyles = StyleSheet.create({
  */
 const handleRegisterForm = async (values, auth) => {
   let response = await auth.registerUser(values.email, values.username,  values.password);
-  alert(`Congrats, ${auth.user} your learning starts now!`);
+  alert(`Congrats, ${values.username} your learning starts now!`);
 }
 
 

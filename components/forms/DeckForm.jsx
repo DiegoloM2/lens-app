@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { Formik } from "formik";
 import Input from "./Input";
 import * as Yup from "yup";
 import { Card, Button, Headline, Avatar } from "react-native-paper";
 import Dropdown from "./Dropdown";
+import { saveDeck } from "../../store/storage";
+import AuthContext from "../../contexts/AuthContext";
+import { useNavigation } from "@react-navigation/native";
+import { useDecks } from "../../contexts/DeckContext";
 
 const styles = StyleSheet.create({
   container: {
@@ -19,20 +23,32 @@ const styles = StyleSheet.create({
   }
 });
 
-const mockParentDecks = [
-    {label: "phyiscs", value: 1},
-    {label: "mathematics", value: 2}
-]
 
+const handleSubmit = async (values, username, navigator, handleAddDeck) => {
+  deck = {
+    "title":values.name,
+    description: values.description,
+    "parent_deck":values.parent_deck,
+    owner: username
+  }
+  try {
+    handleAddDeck(deck);
+    navigator.navigate("Decks", {screen: "Deck"})
+  } catch (e) {
+    console.error("Error adding a new deck: ", e)
+  }
+}
 
-const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }, onSubmit }) => {
+const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: "" }}) => {
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Name is required"),
     description: Yup.string(),
     parent_deck: Yup.string(),
   });
-
-
+  const auth = useContext(AuthContext);
+  const navigator = useNavigation();
+  const { handleAddDeck, decks } = useDecks();
+  const valDecks = decks.map((deck) => ({label: deck.title, value: deck.id}))
 
   return (
     <View style={styles.container}>
@@ -48,8 +64,8 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
           <Text style={{color:"blue", fontWeight:"bold", fontSize:"20px"}}>Let's build a deck!</Text>
         </View>
         
-          <Formik initialValues={initialValues} onSubmit={onSubmit} validationSchema={validationSchema}>
-          {({ handleChange, handleBlur, handleSubmit, values, errors, touched }) => (
+          <Formik initialValues={initialValues} onSubmit={(values) => handleSubmit(values, auth.user.username, navigator, handleAddDeck)} validationSchema={validationSchema}>
+          {({ handleChange, handleBlur, handleSubmit, values, errors, isValid, setFieldValue }) => (
             <>
               <Input
                   label = "Name*"
@@ -68,12 +84,13 @@ const DeckForm = ({ initialValues = { name: "", description: "", parent_deck: ""
                   multiline={true}
                   errors = {errors.description}
               />
-              <Dropdown items = {mockParentDecks} 
-                handleChange = { (value) => {handleChange("parent_deck")}} 
+              <Dropdown items = {valDecks} 
+                handleChange = {setFieldValue}
+                fieldName = "parent_deck" 
                 placeholder = "Select a deck" 
                 label = "Parent Deck"/>
-              <TouchableOpacity style={{marginTop: 25}} onPress={handleSubmit}>
-                <Button style={styles.buttonText} mode = "contained">Create Deck</Button>
+              <TouchableOpacity style={{marginTop: 25}}>
+                <Button style={styles.buttonText} disabled = {!isValid} mode = "contained" onPress = {handleSubmit}>Create Deck</Button>
               </TouchableOpacity>
             </>
           )}

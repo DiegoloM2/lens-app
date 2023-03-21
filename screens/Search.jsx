@@ -1,8 +1,8 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState, useRef, useEffect } from 'react';
 import { SafeAreaView } from 'react-native';
 import { TouchableOpacity, View, Text, FlatList, StyleSheet } from 'react-native';
 import { Searchbar } from 'react-native-paper';
-import { TestDecks } from '../utils/testData';
 
 const styles = StyleSheet.create({
     searchBar: {
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
 
 const DeckSearch = ({ route }) => {
     const { availableDecks } = route.params;
+    const navigator = useNavigation();
 
     const searchbarRef = useRef(null); // Create a ref for the Searchbar component
 
@@ -53,7 +54,7 @@ const DeckSearch = ({ route }) => {
     };
   
     const renderItem = ({ item }) => (
-      <TouchableOpacity style={styles.itemContainer}>
+      <TouchableOpacity style={styles.itemContainer} onPress = {() => navigator.navigate("DeckEdit", {deck: item})}>
         <Text style={styles.itemTitle}>{item.title}</Text>
         <Text style={styles.itemDescription}>{item.description}</Text>
       </TouchableOpacity>

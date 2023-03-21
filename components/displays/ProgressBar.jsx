@@ -3,11 +3,13 @@ import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Text } from "react-native"
 
 // https://www.npmjs.com/package/react-native-circular-progress 
+
+
 const ProgressBar = (props) => (
   <AnimatedCircularProgress
     size={props.size}
     width={5}
-    fill={59}
+    fill={props.done ? props.done : 0}
     tintColor="blue"
     backgroundColor="rgba(150,150,150,0.1)" 
     rotation="0"
