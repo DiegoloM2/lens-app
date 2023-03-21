@@ -15,20 +15,23 @@ export default function DeckEditing({ route }) {
   const { cardsModified } = useCards();
   const [filteredCards, setFilteredCards] = useState(deck.cards);
   const [searchQuery, setSearchQuery] = useState("");
-  const onChangeSearch = (query) => {
-    setSearchQuery(query);
-    if (filteredCards) {
+  const [initialCards, setInitialCards] = useState(deck.cards)
+  const onChangeSearch = (query) => {    
+    if (initialCards) {
+      setSearchQuery(query);
       setFilteredCards(
-        filteredCards.filter((card) =>
+        initialCards.filter((card) =>
           (card.question && card.question.toLowerCase().includes(query.toLowerCase())) ||
           (card.answer && card.answer.toLowerCase().includes(query.toLowerCase()))
         )
       );
     }
+
   };
 
   const effect = async () => {
-      setFilteredCards(await getDeckCards(deck));
+    setInitialCards(await getDeckCards(deck));
+    setFilteredCards(initialCards); 
   }
   useEffect(() => {effect()}, [deck, cardsModified]) //cardsModified because that way on changing set of decks, update happens without refresh.
 
