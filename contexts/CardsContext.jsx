@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { getTodayStudiedCards, getUserCardsForToday, saveCard } from '../store/storage';
+import { getTodayStudiedCards, getUserCardsForToday, saveCard, deleteCard } from '../store/storage';
 import AuthContext from './AuthContext';
 
 const CardsContext = createContext();
@@ -21,7 +21,7 @@ export const CardsProvider = ({ children }) => {
         setCardsModified(!cardsModified)
     }
     const handleDeleteCard = async (card) => {
-        await deleteCard(card);
+        await deleteCard(card.id);
         setToStudyToday(cardsToStudyToday.filter(comp => comp.id != card.id))
         setCardsModified(!cardsModified)
     }

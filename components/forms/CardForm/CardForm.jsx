@@ -32,7 +32,6 @@ const CardForm = ({ initialValues = { question: "", answer: "", deck: null}, dec
   const navigator = useNavigation();
 
   const onSubmit = (values) => {
-    console.log(values.deck);
     const card = {
       "question":values.question,
       answer: values.answer,

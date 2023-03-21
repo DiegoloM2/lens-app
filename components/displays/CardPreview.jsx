@@ -1,16 +1,34 @@
 import  React, {useState} from 'react';
 import { Text, View, TouchableOpacity, Alert } from 'react-native';
 import {  Surface, Menu } from 'react-native-paper';
+import { useCards } from '../../contexts/CardsContext';
 
 
 const CardMenu = ({ onDelete }) => {
+
   const [visible, setVisible] = useState(false);
 
   const openMenu = () => setVisible(true);
   const closeMenu = () => setVisible(false);
 
   const handleDelete = () => {
-    onDelete();
+    Alert.alert(
+      'Eliminate flashcard',
+      '¿Are you sure you want to delete this card?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'Eliminate',
+          onPress: () => onDelete(),
+          style: 'destructive',
+        },
+      ],
+      { cancelable: true }
+    );
     closeMenu();
   };
 
@@ -29,6 +47,10 @@ const CardMenu = ({ onDelete }) => {
 
 
 export default function CardPreview({card }) {
+  const { handleDeleteCard } = useCards();
+  const handleDelete = (card) => {
+    	handleDeleteCard(card)
+  }
   return (
    <Surface style={styles.container} elevation = {5}>
     <View style = {styles.questionContainer}>
@@ -41,7 +63,7 @@ export default function CardPreview({card }) {
 
    </View>
    <TouchableOpacity onPress={() => {}} style={styles.touch}>
-    <CardMenu onDelete = {() => {Alert.alert("card has been deleted")}}/>
+    <CardMenu onDelete = {() => {handleDelete(card)}}/>
     </TouchableOpacity>
    </Surface>
   );
