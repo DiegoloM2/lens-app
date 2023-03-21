@@ -69,8 +69,6 @@ const DeckCard = (props) => {
         }
 
     })
-
-    console.log(deck.cards)
     return ( 
             <Card style = {styles.card}>
                 <Card.Title
@@ -80,7 +78,7 @@ const DeckCard = (props) => {
                   />
                 <Card.Content style = {styles.cardContent}>
                     <View style = {styles.statsContainer}>
-                        <ProgressBar size = {170} />
+                        <ProgressBar size = {170} done = {100}/>
                         <View style = {styles.infoContainer}>
                             <IconTextContainer 
                                 icon = "book-open-variant" label = "last studied"
