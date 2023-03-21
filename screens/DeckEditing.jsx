@@ -7,10 +7,12 @@ import CreateButton from "../components/touchables/CreateButton";
 import CardPreview from "../components/layout/CardPreview";
 import { Searchbar } from "react-native-paper";
 import { getDeckCards } from "../store/storage";
+import { useCards } from "../contexts/CardsContext";
 
 export default function DeckEditing({ route }) {
   const { deck } = route.params;
   const navigator = useNavigation();
+  const { cardsModified } = useCards();
   const [filteredCards, setFilteredCards] = useState(deck.cards);
   const [searchQuery, setSearchQuery] = useState("");
   const onChangeSearch = (query) => {
@@ -26,11 +28,9 @@ export default function DeckEditing({ route }) {
   };
 
   const effect = async () => {
-    if (!filteredCards) {
       setFilteredCards(await getDeckCards(deck));
-    }
   }
-  useEffect(() => {effect()}, [deck])
+  useEffect(() => {effect()}, [deck, cardsModified]) //cardsModified because that way on changing set of decks, update happens without refresh.
 
   return (
     <View>
