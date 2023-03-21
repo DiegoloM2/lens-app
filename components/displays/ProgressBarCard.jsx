@@ -47,7 +47,7 @@ const ProgressBarCard = () => {
             left={LeftContent} 
             titleVariant = "headlineSmall"/>
         <Card.Content>
-                <ProgressBar style = {styles.progBar } size = {150} done = {studyToday == 0 ? 100: 100 * (cardsStudiedToday / studyToday)}/>
+                <ProgressBar style = {styles.progBar } size = {150} done = {studyToday == 0 ? 100: 100 * (cardsStudiedToday / (studyToday + cardsStudiedToday))}/>
         </Card.Content>
         
         <Card.Actions>
