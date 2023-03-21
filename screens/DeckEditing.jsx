@@ -27,7 +27,7 @@ export default function DeckEditing({ route }) {
     <View>
     <ScrollView style={styles.container}>
 
-      <DeckInfoEditing title = { deck.title } description = { deck.description } />
+      <DeckInfoEditing deck = {deck} />
 
       <Searchbar placeholder = "Search your cards here" style = {{
         marginBottom: 10, marginTop: 15, marginHorizontal:0, padding: 0, backgroundColor: "white"}} 

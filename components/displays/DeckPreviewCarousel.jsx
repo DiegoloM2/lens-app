@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 const DeckPreviewCarousel = ({ decks }) => {
   return (
     <Swiper style={styles.wrapper} height = {400} activeDotColor="#007AFF" >
-      {decks.map((deck, index) => (
+      {decks.slice(0, 5).map((deck, index) => (
 
         <View style = {styles.slide} key = {index} >
           <DeckCard deck = {deck} />  
