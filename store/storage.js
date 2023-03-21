@@ -147,7 +147,8 @@ export const deleteCard = async (id) => {
 export const getDeckCards = async (deck) => {
     try {
         const queryCards = await loadCards();
-        return queryCards.filter((card) => card.deck == deck.id);
+        const result = queryCards.filter((card) => card.deck == deck.id);  
+        return result;
     } catch (error) {
         console.error(`Error getting ${deck.title}'s cards:`, error);
     }
@@ -177,7 +178,6 @@ export const getUserCardsForToday = async (username) => {
 export const getTodayStudiedCards = async (username) => {
     try {
         const deckQuery = await getUserDecks(username);
-        console.log("deckQuery", deckQuery)
         var result = 0;
         deckQuery.forEach((deck) => result += deck.studiedToday)
         return result;
