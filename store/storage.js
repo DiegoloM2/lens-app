@@ -35,6 +35,13 @@ export const loadUsers = async () => {
 // Save a deck
 export const saveDeck = async (deck) => {
   try {
+    if (!deck.studiedToday) {
+      deck.studiedToday = 0;
+    } 
+    if (!deck.id) {
+      deck.id = Math.round(Math.random() * 2000)
+    } 
+
     await AsyncStorage.setItem(`deck:${deck.id}`, JSON.stringify(deck));
   } catch (error) {
     console.error('Error saving deck:', error);
