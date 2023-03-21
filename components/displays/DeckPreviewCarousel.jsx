@@ -17,8 +17,8 @@ const DeckPreviewCarousel = ({ decks }) => {
     <Swiper style={styles.wrapper} height = {400} activeDotColor="#007AFF" >
       {decks.map((deck, index) => (
 
-        <View key={index} style = {styles.slide}>
-          <DeckCard key = {index} deck = {deck} />  
+        <View style = {styles.slide} key = {index} >
+          <DeckCard deck = {deck} />  
         </View>
       ))}
     </Swiper>

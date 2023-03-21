@@ -1,9 +1,10 @@
-import * as React from 'react';
+import React, {useState, useEffect} from 'react';
 import { Avatar, Button, Card, Text } from 'react-native-paper';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import ProgressBar from './ProgressBar';
 import IconTextContainer from './IconTextContainer';
 import { useNavigation } from '@react-navigation/native';
+import { getDeckCards } from '../../store/storage';
 
 /**
  * This card displays a deck in card form
@@ -16,6 +17,20 @@ import { useNavigation } from '@react-navigation/native';
 
 const DeckCard = (props) => {
     const navigator = useNavigation();
+    var deck = props.deck;
+    deck.cards = [];
+
+    const [deckWithCards, setDeckWithCards] = useState({ ...props.deck, cards: [] });
+
+    useEffect(() => {
+        const fetchDeckCards = async () => {
+            const cards = await getDeckCards(props.deck);
+            setDeckWithCards({ ...props.deck, cards });
+        };
+
+        fetchDeckCards();
+    }, [props.deck]);
+    
     const styles = StyleSheet.create({
         card: {
             height: '100%',
@@ -55,6 +70,7 @@ const DeckCard = (props) => {
 
     })
 
+    console.log(deck.cards)
     return ( 
             <Card style = {styles.card}>
                 <Card.Title
@@ -68,10 +84,10 @@ const DeckCard = (props) => {
                         <View style = {styles.infoContainer}>
                             <IconTextContainer 
                                 icon = "book-open-variant" label = "last studied"
-                                value = {props.deck.lastStudied} iconStyle = {{color: "green"}} />
+                                value = {"today"} iconStyle = {{color: "green"}} />
                             <IconTextContainer 
                                 icon = "cards-outline" label = 'num of cards'
-                                value = {props.deck.studiedCards} iconStyle = {{color: "orange"}} />
+                                value = {deckWithCards.cards.length} iconStyle = {{color: "orange"}} />
 
                                 
                         </View>
@@ -80,7 +96,7 @@ const DeckCard = (props) => {
                         <Button onPress = {() => {navigator.navigate("Study")}}>
                                     Study
                             </Button>
-                        <Button onPress = {() => {navigator.navigate("DeckEdit", {deck: props.deck})}}>
+                        <Button onPress = {() => {navigator.navigate("DeckEdit", {deck: deckWithCards})}}>
                             Edit
                         </Button>
                     </Card.Actions>

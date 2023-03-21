@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { View, SafeAreaView, ScrollView, StyleSheet, TouchableWithoutFeedback } from "react-native";
 import NavBar from "../components/layout/NavBar";
 import { TestDecks } from "../utils/testData.jsx";
@@ -9,6 +9,8 @@ import Carousel from "../components/displays/DeckPreviewCarousel";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import LinkSearchBar from "../components/touchables/LinkSearchBar";
 import { useNavigation } from "@react-navigation/core";
+import { loadDecks } from "../store/storage";
+import { useDecks } from "../contexts/DeckContext";
 
 
 
@@ -16,7 +18,7 @@ import { useNavigation } from "@react-navigation/core";
 export default function Deck () {
     const theme = useTheme();
     const navigator = useNavigation();
-
+    const { decks } = useDecks();
     const styles = StyleSheet.create({
         deckCardsContainer: {
             flex: 1,
@@ -55,9 +57,9 @@ export default function Deck () {
                 <LinkSearchBar
                     style = {{marginVertical: 15}}
                     placeholder = "Search your decks" 
-                    onPress = {() => {navigator.push("Search", {availableDecks: TestDecks })}}/>
+                    onPress = {() => {navigator.push("Search", {availableDecks: decks })}}/>
             <View style = {{marginTop: 25}}>
-                <Carousel decks = {TestDecks} /> 
+                <Carousel decks = {decks.map(deck => deck )} /> 
             </View>
 
         </ScrollView>
