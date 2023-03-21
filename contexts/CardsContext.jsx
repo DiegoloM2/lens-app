@@ -17,7 +17,7 @@ export const CardsProvider = ({ children }) => {
 
     useEffect(() => {
         effect(cardsStudiedToday, cardsToStudyToday);
-    }, []);
+    }, [auth.user.username]);
 
 
     return (
