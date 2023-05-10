@@ -5,10 +5,10 @@ Lens is a user-friendly mobile application designed to help users optimize their
 Spaced repetition is a proven learning technique that involves reviewing information at increasing intervals, thereby significantly improving long-term retention of the material. With Lens, users can create their own flashcards or choose from a vast library of pre-built decks, making it easy to learn a wide range of topics.
 
 # Features
-- User-friendly interface for seamless navigation and deck management
-- Customizable flashcards with support for text and images
+- User-friendly interface for seamless navigation and deck management (Using React Native)
+- Customizable flashcards with support for text and images 
 - Performance tracking and analytics for efficient learning progress
-- Synchronization across devices for a seamless experience
+- Synchronization across devices for a seamless experience (using Django Rest API)
 
 # Getting Started
 To get started with Lens, follow these simple steps:
