@@ -35,7 +35,7 @@ Clone the repository:
 Lens is released under the MIT License.
 
 # Acknowledgements
-These are the contributors and creators of Lens:
+These are the contributors and creators of Lens:<br>
 Thank you [scaevitas](https://github.com/scaevitas) <br>
 Thank you [Blanxu](https://github.com/Blanxu)<br>
 Thank you [DiegoloM2](https://github.com/DiegoloM2)
